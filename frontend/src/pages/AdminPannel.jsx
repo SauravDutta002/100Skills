@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import testImg from "../assets/testimg.jpeg";
+// import testImg from "../assets/testimg.jpeg";
 import { useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiCirclePlus } from "react-icons/ci";
