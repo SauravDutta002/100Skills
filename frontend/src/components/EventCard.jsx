@@ -19,7 +19,7 @@ const EventCard = ({ event }) => {
       {/* Event Image */}
       <div className="h-[25vh] w-full overflow-hidden px-0.5 py-0.5">
         <img
-          src={event.eventImage}
+          src={event.eventImage.url}
           alt="Event"
           className="object-cover h-full w-full rounded-t-2xl"
         />

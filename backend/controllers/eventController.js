@@ -29,10 +29,57 @@ import Event from "../models/Event.js"
 // }
 
 
+// export const createEvent = async (req, res) => {
+//   try {
+//     const {
+//       eventImage,
+//       eventName,
+//       location,
+//       registrationStartDate,
+//       registrationEndDate,
+//       eventDate,
+//       registerLink,
+//       mode,
+//       paymentType,
+//       eventDescription,
+//       AdditionalInfo
+//     } = req.body;
+
+//     const clubId = req.club.id; // set by auth middleware
+
+//     const newEvent = new Event({
+//       eventImage,
+//       eventName,
+//       location,
+//       registrationStartDate,
+//       registrationEndDate,
+//       eventDate,
+//       registerLink,
+//       mode,
+//       paymentType,
+//       eventDescription,
+//       AdditionalInfo,
+//       club: clubId,
+//     });
+
+//     await newEvent.save();
+
+//     res.status(201).json({
+//       message: "Event Created Successfully",
+//       event: newEvent
+//     });
+
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Server Error", error: error.message });
+//   }
+// };
+
+
 export const createEvent = async (req, res) => {
   try {
     const {
-      eventImage,
+      eventImage, // This might just be a string (URL)
       eventName,
       location,
       registrationStartDate,
@@ -45,10 +92,19 @@ export const createEvent = async (req, res) => {
       AdditionalInfo
     } = req.body;
 
-    const clubId = req.club.id; // set by auth middleware
+    const clubId = req.club.id;
+
+    // ✅ Step: Convert string to object if needed
+    let image = eventImage;
+    if (typeof eventImage === "string") {
+      image = {
+        public_id: "manual_" + Date.now(), // or generate your own ID
+        url: eventImage
+      };
+    }
 
     const newEvent = new Event({
-      eventImage,
+      eventImage: image,
       eventName,
       location,
       registrationStartDate,
@@ -70,7 +126,7 @@ export const createEvent = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("CREATE EVENT ERROR:", error);
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
