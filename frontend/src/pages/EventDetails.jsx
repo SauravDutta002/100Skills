@@ -3,7 +3,7 @@ import EventInfo from '../components/EventInfo'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const Base_URL = "http://localhost:5000/api";
+const Base_URL = "https://one00skills.onrender.com/api";
 
 const EventDetails = () => {
 

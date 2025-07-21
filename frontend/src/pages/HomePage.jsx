@@ -13,7 +13,7 @@ import ErrorLoader from '../components/ErrorLoader';
 const HomePage = () => {
   
   
-  const Base_Url = "http://localhost:5000/api";
+  const Base_Url = "https://one00skills.onrender.com/api";
   const navigate = useNavigate()
   
   

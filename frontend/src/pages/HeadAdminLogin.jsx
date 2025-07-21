@@ -19,7 +19,7 @@ const AdminLogin = () => {
             console.log("cliked")
             try {
               setloading(true);
-                const res = await axios.post(`http://localhost:5000/api/auth/login` , {
+                const res = await axios.post(`https://one00skills.onrender.com/api/auth/login` , {
                     userId : userId,
                     password : password,
                 }); 

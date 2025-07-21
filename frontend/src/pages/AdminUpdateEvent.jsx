@@ -60,7 +60,7 @@ const uploadToCloudinary = async (file) => {
     try {
         console.log(formData)
         setloading(true);
-      const { data } = await axios.get("http://localhost:5000/api/cloudinary/signature");
+      const { data } = await axios.get("https://one00skills.onrender.com/api/cloudinary/signature");
       const { signature, timestamp } = data;
       
       const cloudName = REACT_APP_CLOUDINARY_CLOUD_NAME;
@@ -103,7 +103,7 @@ const uploadToCloudinary = async (file) => {
 
       };
 
-      await axios.put(`http://localhost:5000/api/edit/${id}`, payload,{
+      await axios.put(`https://one00skills.onrender.com/api/edit/${id}`, payload,{
         headers: {
         Authorization: `Bearer ${token}`
         }
