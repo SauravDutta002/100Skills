@@ -132,7 +132,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import testImg from "../assets/testimg.jpeg";
+// import testImg from "../assets/testimg.jpeg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaLocationDot, FaRegCircleDot } from "react-icons/fa6";
