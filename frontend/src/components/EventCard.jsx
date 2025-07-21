@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import testImg from "../assets/testimg.jpeg";
+// import testImg from "../assets/testimg.jpeg";
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineMoneyOff, MdOutlineAttachMoney } from "react-icons/md";
 import { GoClock } from "react-icons/go";
