@@ -181,7 +181,7 @@ const EventInfo = ({eventData}) => {
                 {/* Image */}
                 <div className="border h-[100px] w-[190px] sm:h-full sm:w-[18%] rounded-xl overflow-hidden px-0.5 py-0.5 ">
                   <img
-                    src={testImg}
+                    src=""
                     alt=""
                     className="h-full w-full object-cover rounded-xl"
                   />
