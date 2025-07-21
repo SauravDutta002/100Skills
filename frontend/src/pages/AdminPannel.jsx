@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import testImg from "../assets/testimg.jpeg";
+import testImg from "../assets/testimg.jpeg";
 import { useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiCirclePlus } from "react-icons/ci";
@@ -67,7 +67,7 @@ const AdminPannel = () => {
       <div className='bg-white h-[25%] w-full flex items-center px-2 rounded-xl gap-4'>
         <div className='flex items-center gap-2'>
           <div className='h-[92%] w-[10%] border rounded-xl px-0.5 py-0.5'>
-            <img src={testImg} alt="club logo" className='h-full w-full object-cover rounded-xl' />
+            <img src="" alt="club logo" className='h-full w-full object-cover rounded-xl' />
           </div>
           <div className='font-bold text-2xl'>
             <span>CLUB NAME</span>
@@ -110,7 +110,7 @@ const AdminPannel = () => {
                   <tr key={index} className="border-b hover:bg-gray-50">
                     <td className="px-4 py-3 border w-[30%]">
                       <img
-                        src={event.eventImage || testImg}
+                        src={event.eventImage.url}
                         alt="event"
                         className="h-50 w-90 object-cover rounded-md"
                       />
