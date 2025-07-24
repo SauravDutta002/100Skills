@@ -1,33 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import testImg from "../assets/testimg.jpeg";
 import { useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiCirclePlus } from "react-icons/ci";
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-
-
 
 const Base_URL = "https://one00skills.onrender.com/api";
 
 const AdminPannel = () => {
-  // const {id} = useParams();
   const [clubData, setClubData] = useState([]);
   const navigate = useNavigate();
-
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchMyEvents = async () => {
       try {
         const res = await axios.get(`${Base_URL}/my`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
-
-        setClubData(res.data); 
-        console.log("Fetched Events:", res.data);
+        setClubData(res.data);
       } catch (err) {
         console.error("Error fetching events:", err);
         alert("Error fetching your events.");
@@ -37,64 +27,50 @@ const AdminPannel = () => {
     fetchMyEvents();
   }, []);
 
-
-  const deleteEvent= async(eventId)=>{
-    console.log("Deleting event with ID:", eventId);
+  const deleteEvent = async (eventId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this event?");
+    if (!confirmDelete) return;
 
     try {
-       const confirm = window.confirm("Are you sure you want to delete this event?");
-    if (!confirm) return;
-
-      const deleteEventById = await axios.delete(`${Base_URL}/delete/${eventId}` , {
-         headers: {
-        Authorization: `Bearer ${token}`, 
-      },
-
+      await axios.delete(`${Base_URL}/delete/${eventId}`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-      
+
       alert("Deleted");
-      setClubData (prev => prev.filter(event => event._id !== eventId));
-      
+      setClubData(prev => prev.filter(event => event._id !== eventId));
     } catch (error) {
-      alert("error");
+      alert("Error deleting event");
       console.error("Error deleting event:", error);
     }
-  }
+  };
 
   return (
-    <div className="h-screen w-full px-4 py-2 flex flex-col gap-2">
-      {/* Header Section */}
-      <div className='bg-white h-[25%] w-full flex items-center px-2 rounded-xl gap-4'>
-        <div className='flex items-center gap-2'>
-          <div className='h-[92%] w-[10%] border rounded-xl px-0.5 py-0.5'>
-            <img src="" alt="club logo" className='h-full w-full object-cover rounded-xl' />
+    <div className="w-full min-h-screen px-4 py-4 bg-gray-100">
+      {/* Header */}
+      <div className="bg-white rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+        <div className="flex items-center gap-4">
+          <div className="h-16 w-16 bg-gray-300 rounded-full overflow-hidden border">
+            <img src="" alt="club logo" className="w-full h-full object-cover" />
           </div>
-          <div className='font-bold text-2xl'>
-            <span>CLUB NAME</span>
-          </div>
+          <div className="text-xl font-bold text-blue-600">CLUB NAME</div>
         </div>
-
-        <div className='w-[20%]'>
+        <div className="flex items-center gap-4">
           <button
             onClick={() => navigate("/createvent")}
-            className='border px-2 py-2 rounded flex items-center gap-1'
+            className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition"
           >
-            Create New <span className='text-2xl'><CiCirclePlus /></span>
+            Create New <CiCirclePlus size={20} />
           </button>
-        </div>
-
-        <div className='pr-2 flex h-full py-1 justify-start'>
-          <span className='text-3xl'><GiHamburgerMenu /></span>
+          <GiHamburgerMenu className="text-2xl text-gray-700 sm:hidden" />
         </div>
       </div>
 
-      {/* Events Table Section */}
-      <div className='bg-white h-full w-full px-2 rounded-xl flex flex-col gap-4'>
-        <div className='px-2 py-2'>
-          <span className='text-2xl font-semibold'>Your Current Events</span>
-        </div>
+      {/* Events Table */}
+      <div className="bg-white mt-6 p-4 rounded-xl shadow-md">
+        <h2 className="text-xl font-semibold mb-4 text-gray-800">Your Current Events</h2>
 
-        <div className="w-full overflow-x-auto rounded-lg shadow border">
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="min-w-full text-sm text-left border-collapse">
             <thead className="bg-gray-100 text-gray-700 font-semibold">
               <tr>
@@ -112,7 +88,7 @@ const AdminPannel = () => {
                       <img
                         src={event.eventImage.url}
                         alt="event"
-                        className="h-50 w-90 object-cover rounded-md"
+                        className="h-28 w-full object-cover rounded-md"
                       />
                     </td>
                     <td className="px-4 py-3 border">{event.eventName}</td>
@@ -120,12 +96,16 @@ const AdminPannel = () => {
                       {new Date(event.eventDate).toLocaleDateString()}
                     </td>
                     <td className="px-4 py-3 border">
-                      <button onClick={()=>{navigate(`/edit/${event._id}`, { state: { event } })}} className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                      <button
+                        onClick={() => navigate(`/edit/${event._id}`, { state: { event } })}
+                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2 transition"
+                      >
                         Edit
                       </button>
-                      <button onClick={()=>{
-                        deleteEvent(event._id);
-                      }} className="bg-red-500 text-white px-3 py-1 rounded ml-2 hover:bg-red-600">
+                      <button
+                        onClick={() => deleteEvent(event._id)}
+                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                      >
                         Delete
                       </button>
                     </td>
@@ -133,13 +113,48 @@ const AdminPannel = () => {
                 ))
               ) : (
                 <tr>
-                  <td className="px-4 py-3 border text-center" colSpan={4}>
+                  <td colSpan="4" className="text-center py-4 text-gray-500">
                     No events found.
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Cards */}
+        <div className="md:hidden flex flex-col gap-4">
+          {clubData.length > 0 ? (
+            clubData.map((event, index) => (
+              <div key={index} className="border rounded-lg p-3 shadow-sm">
+                <img
+                  src={event.eventImage.url}
+                  alt="event"
+                  className="w-full h-40 object-cover rounded-md mb-2"
+                />
+                <h3 className="text-lg font-semibold text-blue-600">{event.eventName}</h3>
+                <p className="text-gray-700 mb-2">
+                  {new Date(event.eventDate).toLocaleDateString()}
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => navigate(`/edit/${event._id}`, { state: { event } })}
+                    className="flex-1 bg-blue-500 text-white py-1 rounded hover:bg-blue-600 transition"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => deleteEvent(event._id)}
+                    className="flex-1 bg-red-500 text-white py-1 rounded hover:bg-red-600 transition"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500">No events found.</p>
+          )}
         </div>
       </div>
     </div>

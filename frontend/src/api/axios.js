@@ -1,7 +1,9 @@
 import axios from "axios"
 
+const BASE_URI = import.meta.env.VITE_BASE_URI;
+
 const api = axios.create({
-    Base_URL : "https://one00skills.onrender.com/api",
+    baseURL : BASE_URI,
     headers: {
     'Content-Type': 'application/json',
   },

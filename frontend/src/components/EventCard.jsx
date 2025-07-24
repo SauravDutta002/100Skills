@@ -42,11 +42,11 @@ const EventCard = ({ event }) => {
         )}
 
         {event.mode === "online" ? (
-          <span className="px-2 rounded-2xl border border-gray-600 h-6 text-blue-500">
+          <span className="px-2 rounded-2xl border border-gray-600 h-6 text-blue-500 flex items-center">
             Online
           </span>
         ) : (
-          <span className="px-2 rounded-2xl border border-gray-600 h-6">
+          <span className="px-2 rounded-2xl border border-gray-600 h-6 flex items-center">
             Offline
           </span>
         )}
@@ -60,8 +60,8 @@ const EventCard = ({ event }) => {
         </div>
 
         {/* Time & Location */}
-        <div className="w-full bg-[#4806ba4c] rounded-xl flex flex-col sm:flex-row px-2 py-2 gap-2 text-xs sm:text-sm max-h-[15vh] overflow-hidden ">
-          <div className="sm:w-1/2 flex flex-col gap-2 border-b sm:border-b-0 sm:border-r border-gray-700 pr-2">
+        <div className="w-full bg-[#4806ba4c] rounded-xl flex  sm:flex-row px-10 py-2 gap-2 text-xs sm:text-sm max-h-[15vh] overflow-hidden items-center justify-between  ">
+          <div className="sm:w-1/2 flex flex-col gap-2 border-r sm:border-b-0 sm:border-r border-gray-700 pr-2 ">
             <span className="flex items-center gap-1">
               Ends In <GoClock />
             </span>

@@ -166,7 +166,7 @@ const EventInfo = ({eventData}) => {
           {/* Top Image */}
           <div className="h-[30vh] sm:h-[45vh] w-full bg-white overflow-hidden">
             <img
-              src={eventData.eventImage.url}
+              src={eventData.eventImage?.url}
               alt="event img"
               className="h-full w-full object-cover"
             />
