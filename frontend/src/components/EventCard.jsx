@@ -6,7 +6,8 @@ import { MdOutlineMoneyOff, MdOutlineAttachMoney } from "react-icons/md";
 import { GoClock } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import Countdown from "./Countdown";
-
+import { LuAlarmClock } from "react-icons/lu";
+import { FaRegCircleDot } from "react-icons/fa6";
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const EventCard = ({ event }) => {
       </div>
 
       {/* Labels */}
-      <div className="flex flex-wrap text-xs sm:text-sm px-2 py-1 gap-1 items-center">
+      <div className="flex flex-wrap text-xs sm:text-sm px-2 py-1 gap-2 items-center">
         <span className="border border-gray-600 rounded-full w-[42px] h-[42px] sm:w-[3vw] sm:h-[3vw] overflow-hidden flex items-center justify-center">
           <img src="" alt="Organizer" className="object-cover w-full h-full" />
         </span>
@@ -50,6 +51,18 @@ const EventCard = ({ event }) => {
             Offline
           </span>
         )}
+
+       
+      {Date.now() < new Date(event.registrationEndDate).getTime() ? (
+  <span className="px-2 rounded border h-6 text-red-500 flex items-center font-extrabold gap-1">
+    <FaRegCircleDot className="animate-pulse"/> Live
+  </span>
+) : (
+  <span className="px-2 rounded h-6 text-black bg-red-400/80 flex items-center font-extrabold">
+    Ended
+  </span>
+)}
+
       </div>
 
       {/* Main Content */}
@@ -60,7 +73,7 @@ const EventCard = ({ event }) => {
         </div>
 
         {/* Time & Location */}
-        <div className="w-full bg-[#4806ba4c] rounded-xl flex  sm:flex-row px-10 py-2 gap-2 text-xs sm:text-sm max-h-[15vh] overflow-hidden items-center justify-between  ">
+        {/* <div className="w-full bg-[#4806ba4c] rounded-xl flex  sm:flex-row px-10 py-2 gap-2 text-xs sm:text-sm max-h-[15vh] overflow-hidden items-center justify-between  ">
           <div className="sm:w-1/2 flex flex-col gap-2 border-r sm:border-b-0 sm:border-r border-gray-700 pr-2 ">
             <span className="flex items-center gap-1">
               Ends In <GoClock />
@@ -79,6 +92,18 @@ const EventCard = ({ event }) => {
               {event.location || "Online"}
             </div>
           </div>
+        </div> */}
+
+        <div className="flex items-center gap-2">
+          <LuAlarmClock className="text-xl"/> <Countdown
+                startDate={event.registrationStartDate}
+                endDate={event.registrationEndDate}
+              />
+        </div>
+        <div className="flex items-center gap-2">
+          <CiLocationOn className="text-xl"/>  <div className="truncate text-xs sm:text-sm">
+              {event.location || "Online"}
+            </div>
         </div>
 
         {/* Buttons */}

@@ -9,6 +9,10 @@ const EventDetails = () => {
 
   const { id } = useParams();
   const [eventData, setEventData] = useState([]);
+  
+   useEffect(() => {
+    window.scrollTo(0, 0); // 👈 this forces scroll to top when component loads
+  }, []);
 
   useEffect(() => {
     const getDataById = async () => {
@@ -26,7 +30,7 @@ const EventDetails = () => {
   
   return (
     <div>
-      <EventInfo  eventData ={eventData}/>
+      <EventInfo eventData ={eventData}/>
     </div>
   )
 }

@@ -2,8 +2,7 @@ import React from "react";
 
 const EventCardSkeleton = () => {
   return (
-    <div className="w-[85vw] sm:w-[60vw] md:w-[40vw] lg:w-[28vw] xl:w-[20vw] max-h-[70vh] bg-white rounded-2xl shadow-2xl overflow-hidden animate-pulse flex flex-col">
-
+    <div className="w-[85vw] sm:w-[60vw] md:w-[40vw] lg:w-[28vw] xl:w-[20vw] max-h-[70vh] bg-white rounded-2xl shadow-2xl overflow-hidden animate-pulse flex flex-col ">
 
       {/* Image Skeleton */}
       <div className="h-[25vh] w-full bg-gray-200" />

@@ -132,7 +132,7 @@ const HomePage = () => {
     <div className="min-h-screen w-full bg-gradient-to-b from-white to-[#f4f4f4] px-4 sm:px-10 md:px-16 lg:px-20 py-6 font-sans transition-all duration-300">
 
       {/* Search Modal */}
-      {search && (
+      {/* {search && (
         <div className="fixed inset-0 z-40 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center px-4">
           <div className="bg-white rounded-xl shadow-lg p-6 max-h-[80vh] w-full sm:w-[90%] md:w-[70%] overflow-auto animate-fadeIn scale-100">
             {filteritems.length > 0 ? (
@@ -157,8 +157,13 @@ const HomePage = () => {
             )}
           </div>
         </div>
-      )}
+      )} */}
 
+{
+  search && (
+    <div className='fixed inset-0 mt-20 h-100  bg-green-300 z-30'></div>
+  )
+}
       {/* Trending Events */}
       <section className="w-full flex flex-col gap-5">
         <div className="flex items-center gap-2 text-2xl font-semibold px-4 md:p-0">
@@ -172,7 +177,7 @@ const HomePage = () => {
           <div className="flex flex-wrap gap-4 justify-center sm:justify-start animate-fadeInSlow">
             {events.length > 0 ? (
               events.map((event) => (
-                <EventCard key={event._id} event={event} />
+                <EventCard className="h-20" key={event._id} event={event} />
               ))
             ) : (
               <div className="text-center text-gray-600 font-medium">No events available.</div>

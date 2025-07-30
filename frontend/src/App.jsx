@@ -10,6 +10,9 @@ import AdminCreateEvent from './pages/AdminCreateEvent';
 import HeadAdminDashboard from './pages/HeadAdminDashboard';
 import NotFound from './pages/NotFound';
 import AdminUpdateEvent from './pages/AdminUpdateEvent';
+import SearchBox from './components/SearchBox';
+import HomePageEvents from './pages/HomePageEvents';
+import Hackathons from './pages/Hakathons';
 const App = () => {
 
 
@@ -19,7 +22,8 @@ const App = () => {
   
     <Routes>
       <Route  element={<Layout/>}>
-      <Route path='/' element={<HomePage/>} />
+      <Route path='/' element={<HomePageEvents/>} />
+      <Route path='/hakathon' element={<Hackathons/>} />
       <Route path='/event/:id' element={<EventDetails/>} />
       <Route path='/create' element={<Uploadclod/>} />
       <Route path='/clublogin' element={<AdminLogin/>} />
@@ -27,6 +31,7 @@ const App = () => {
       <Route path='/createvent' element={<AdminCreateEvent/>}/>
       <Route path='/headadmin' element={<HeadAdminDashboard/>}/>
       <Route path='/edit/:id' element={<AdminUpdateEvent/>}/>
+      <Route path='/temp' element={<SearchBox/>}/>
       <Route path='*' element={<NotFound/>}/>
       
       </Route>
