@@ -10,9 +10,9 @@ import AdminCreateEvent from './pages/AdminCreateEvent';
 import HeadAdminDashboard from './pages/HeadAdminDashboard';
 import NotFound from './pages/NotFound';
 import AdminUpdateEvent from './pages/AdminUpdateEvent';
-import SearchBox from './components/SearchBox';
 import HomePageEvents from './pages/HomePageEvents';
 import Hackathons from './pages/Hakathons';
+import SearchBar from './components/SearchBar';
 const App = () => {
 
 
@@ -31,7 +31,8 @@ const App = () => {
       <Route path='/createvent' element={<AdminCreateEvent/>}/>
       <Route path='/headadmin' element={<HeadAdminDashboard/>}/>
       <Route path='/edit/:id' element={<AdminUpdateEvent/>}/>
-      <Route path='/temp' element={<SearchBox/>}/>
+      <Route path='/search' element={<SearchBar/>}/>
+
       <Route path='*' element={<NotFound/>}/>
       
       </Route>

@@ -23,7 +23,7 @@ const AdminLogin = () => {
                     userId : userId,
                     password : password,
                 }); 
-                alert ("login sucess");
+                // alert ("login sucess");
                 localStorage.setItem("token", res.data.token);
 
                 const adminId = res.data.user.id;

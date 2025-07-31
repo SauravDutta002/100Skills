@@ -144,17 +144,26 @@ import React, { useEffect, useState } from 'react';
 import { TbWorldSearch } from "react-icons/tb";
 import { FaLaptopCode, FaChalkboardTeacher, FaQuestionCircle, FaTrophy, FaLightbulb } from "react-icons/fa";
 import axios from 'axios';
+import { useOutletContext } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
 
 const HomePageEvents = () => {
   const Base_Url = "https://one00skills.onrender.com/api";
+   const { mobileToggle , setMobileToggle} = useOutletContext();
 
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [openSearch, setOpenSearch] = useState(false);
+
+  const upadteOpensearch = ()=>{
+    setOpenSearch(false);
+    setMobileToggle(false);
+  }
 
     const navigate = useNavigate();
 
@@ -221,8 +230,13 @@ const HomePageEvents = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-6 text-gray-800 font-mono">
-      
+    <div className="min-h-screen bg-gray-100  text-gray-800 font-mono">
+      {(openSearch || mobileToggle) ? (<SearchBar upadteOpensearch={upadteOpensearch} />) : (
+
+
+         <div className='px-4 py-6'>
+
+
       {/* Search Box */}
       <div className="flex items-center gap-2 bg-white rounded-xl shadow px-4 py-2 mb-6">
         <TbWorldSearch className="text-xl text-gray-500" />
@@ -232,36 +246,10 @@ const HomePageEvents = () => {
           className="w-full border-none outline-none text-base"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          onClick={()=>{setOpenSearch(true)}}
         />
       </div>
 
-      {/* Filter Tabs */}
-      {/* <div className="flex gap-3 mb-6 flex-wrap">
-        <span className="px-4 py-1 bg-yellow-400 text-white rounded-full text-sm cursor-pointer">All</span>
-        <span className="px-4 py-1 bg-gray-200 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-cyan-400 hover:text-white transition">Hackathons</span>
-        <span className="px-4 py-1 bg-gray-200 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-orange-400 hover:text-white transition">Workshops</span>
-        <span className="px-4 py-1 bg-gray-200 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-yellow-400 hover:text-white transition">Quizzes</span>
-        <span className="px-4 py-1 bg-gray-200 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-orange-300 hover:text-white transition">Competitions</span>
-      </div> */}
-
-      {/* Slider Section */}
-      {/* <div className="bg-white rounded-xl shadow-md h-40 overflow-hidden mb-6 flex flex-col justify-center ">
-        {loading ? (
-          <div className="text-center">Loading events...</div>
-        ) : (
-          <Slider {...sliderSettings}>
-            {events.map(event => (
-              <div key={event._id} className="flex justify-center items-center">
-                <img
-                  src={event.eventImage?.url}
-                  alt={event.eventName}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            ))}
-          </Slider>
-        )}
-      </div> */}
 
       <div className="bg-white rounded-xl shadow-md h-40 overflow-hidden mb-6 flex flex-col justify-center">
   {loading ? (
@@ -273,7 +261,7 @@ const HomePageEvents = () => {
           <img
             src={event.eventImage?.url}
             alt={event.eventName}
-            className="h-full w-full object-cover rounded-xl"
+            className="h-full w-full object-cover "
           />
         </div>
       ))}
@@ -299,8 +287,8 @@ const HomePageEvents = () => {
       </div>
 
       {/* Featured Events Horizontal Scroll */}
-      <div className="mt-6">
-        <h2 className="text-xl font-semibold text-gray-800 mb-3 border-r border-amber-500">Featured Events</h2>
+      <div className="mt-6 bg-white py-1 rounded-xl overflow-hidden">
+        <h2 className="text-xl font-semibold text-gray-800 mb-3 border-l border-amber-500">Featured Events</h2>
         <div className="flex space-x-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300">
           {events.slice(0, 10).map(event => (
             <div 
@@ -315,17 +303,33 @@ const HomePageEvents = () => {
               />
               <div className="p-4">
                 <h3 className="text-lg font-bold text-gray-800">{event.eventName}</h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  📍 {event.eventLocation || 'Online'} | 🗓 {new Date(event.eventDate).toLocaleDateString()}
+                <div className='flex gap-2'>
+
+                <p className="text-sm text-gray-600 mt-1 ">
+                  <span className='border px-1 py-1 rounded-xl'>
+
+                  {event.mode} 
+                  </span>
                 </p>
-                <p className="mt-2 text-gray-700 text-sm line-clamp-3">
-                  {event.eventDescription || 'No description provided.'}
+                 <p className="text-sm text-gray-600 mt-1 ">
+                  <span className='border px-1 py-1 rounded-xl'>
+
+                  {event.paymentType } 
+                  </span>
                 </p>
+                </div>
+               
               </div>
             </div>
           ))}
         </div>
       </div>
+        </div>
+
+
+      )}
+      
+     
     </div>
   );
 };
