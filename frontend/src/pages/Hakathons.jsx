@@ -5,6 +5,7 @@ import axios from "axios";
 import HomeLoader from "../components/Loaders/HomeLoader";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import ErrorLoader from '../components/ErrorLoader';
+import { FaLaptopCode } from "react-icons/fa6";
 
 const Hakathons = () => {
   const Base_Url = "https://one00skills.onrender.com/api";
@@ -34,7 +35,7 @@ const Hakathons = () => {
   );
 
   return (
-    <div className="min-h-screen w-full  px-4 sm:px-10 md:px-16 lg:px-20 py-6 font-sans transition-all duration-300">
+    <div className="min-h-screen w-full  px-4 sm:px-10 md:px-16 lg:px-20 py-6 font-mono transition-all duration-300">
 
       {/* Search Modal */}
       {/* {search && (
@@ -72,8 +73,8 @@ const Hakathons = () => {
       {/* Trending Events */}
       <section className="w-full flex flex-col gap-5">
         <div className="flex items-center gap-2 text-2xl font-semibold px-4 md:p-0">
-          <span>Trending Opportunity</span>
-          <BsFire className="text-red-500 animate-pulse" />
+          <span className='font-bold'>Hakathons</span>
+          <FaLaptopCode className="text-blue-500 text-4xl" />
         </div>
 
         {loading ? (
