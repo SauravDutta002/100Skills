@@ -22,10 +22,10 @@ const Countdown = ({ startDate, endDate }) => {
 
       if (now < start) {
         const diff = start - now;
-        setTimeLeft(calculateTime(diff, 'Starts In'));
+        setTimeLeft(calculateTime(diff, ));
       } else if (now >= start && now < end) {
         const diff = end - now;
-        setTimeLeft(calculateTime(diff, 'Ends In'));
+        setTimeLeft(calculateTime(diff,));
       } else {
         setTimeLeft({ status: 'Registration Closed' });
       }
