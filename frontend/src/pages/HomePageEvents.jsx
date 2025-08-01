@@ -189,15 +189,14 @@ const HomePageEvents = () => {
       name: 'Workshops',
       color: 'bg-gradient-to-r from-cyan-400 to-teal-400',
       icon: <FaChalkboardTeacher className="text-4xl text-green-500" />,
-      path : "/woekshop",
+      path : "/workshops",
 
     },
     {
       name: 'Competitions',
       color: 'bg-gradient-to-r from-purple-500 to-pink-500',
       icon: <FaTrophy className="text-4xl text-yellow-400" />,
-      path : "/competition",
-
+      path : "/competitions",
     },
   ];
 

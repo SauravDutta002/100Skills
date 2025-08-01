@@ -14,6 +14,8 @@ import HomePageEvents from './pages/HomePageEvents';
 import Hackathons from './pages/Hakathons';
 import SearchBar from './components/SearchBar';
 import Ideathons from './pages/Ideathons';
+import Wrokshops from './pages/Workshops';
+import Competitions from './pages/Competitions';
 const App = () => {
 
 
@@ -25,7 +27,9 @@ const App = () => {
       <Route  element={<Layout/>}>
       <Route path='/' element={<HomePageEvents/>} />
       <Route path='/hackathon' element={<Hackathons/>} />
+      <Route path='/workshops' element={<Wrokshops/>} />
       <Route path='/ideathons' element={<Ideathons/>} />
+      <Route path='/competitions' element={<Competitions/>} />
       <Route path='/event/:id' element={<EventDetails/>} />
       <Route path='/create' element={<Uploadclod/>} />
       <Route path='/clublogin' element={<AdminLogin/>} />
