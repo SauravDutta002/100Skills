@@ -141,7 +141,6 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { TbWorldSearch } from "react-icons/tb";
 import { FaLaptopCode, FaChalkboardTeacher, FaQuestionCircle, FaTrophy, FaLightbulb } from "react-icons/fa";
 import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
@@ -150,6 +149,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
+import SearchBoxTop from '../components/SearchBoxTop';
 
 const HomePageEvents = () => {
   const Base_Url = "https://one00skills.onrender.com/api";
@@ -231,14 +231,14 @@ const HomePageEvents = () => {
 
   return (
     <div className="min-h-screen bg-gray-100  text-gray-800 font-mono">
-      {(openSearch || mobileToggle) ? (<SearchBar upadteOpensearch={upadteOpensearch} />) : (
+      {/* {(openSearch || mobileToggle) ? (<SearchBar upadteOpensearch={upadteOpensearch} />) : ( */}
 
 
          <div className='px-4 py-6'>
 
 
       {/* Search Box */}
-      <div className="flex items-center gap-2 bg-white rounded-xl shadow px-4 py-2 mb-6">
+      {/* <div className="flex items-center gap-2 bg-white rounded-xl shadow px-4 py-2 mb-6">
         <TbWorldSearch className="text-xl text-gray-500" />
         <input
           type="text"
@@ -246,9 +246,11 @@ const HomePageEvents = () => {
           className="w-full border-none outline-none text-base"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          onClick={()=>{setOpenSearch(true)}}
+          onClick={()=>{setMobileToggle(true)}}
         />
-      </div>
+      </div> */}
+
+      <SearchBoxTop/>
 
 
       <div className="bg-white rounded-xl shadow-md h-40 overflow-hidden mb-6 flex flex-col justify-center">
@@ -327,7 +329,7 @@ const HomePageEvents = () => {
         </div>
 
 
-      )}
+      {/* )} */}
       
      
     </div>

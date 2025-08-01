@@ -4,7 +4,7 @@ import axios from 'axios';
 import { TiArrowBack } from "react-icons/ti";
 import { FaCode } from "react-icons/fa";
 import {useNavigate} from "react-router-dom"
-const SearchBar = ({upadteOpensearch}) => {
+const SearchBar = ({closeSearch}) => {
   const Base_Url = "https://one00skills.onrender.com/api";
 
   const [searchInput, setSearchInput] = useState('');
@@ -41,7 +41,7 @@ const SearchBar = ({upadteOpensearch}) => {
   return (
     <div className="bg-white min-h-screen px-6 py-4 shadow-md mx-auto font-mono">
       {/* Back Button */}
-      <div onClick={()=>{upadteOpensearch()}} className='flex items-center gap-1 mb-4 font-semibold cursor-pointer'>
+      <div onClick={()=>{closeSearch()}} className='flex items-center gap-1 mb-4 font-semibold cursor-pointer'>
         <TiArrowBack />
         Back
       </div>
@@ -71,6 +71,7 @@ const SearchBar = ({upadteOpensearch}) => {
             <Category icon="🏆" label="Competitions" />
             <Category icon="🧑‍🏫" label="Workshops" />
             <Category icon="📦" label="Others" />
+            <Category icon="📦" label="All" />
           </div>
         </>
       ) : (
@@ -81,7 +82,9 @@ const SearchBar = ({upadteOpensearch}) => {
             <div className="space-y-4">
               {filteredEvents.map(event => (
                 <div
-                onClick={()=>{eventDetails(event._id)}}
+                onClick={()=>{eventDetails(event._id) 
+                  closeSearch()
+                }}
                   key={event._id}
                   className="bg-white border w-full rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300 flex items-center gap-4"
                 >
