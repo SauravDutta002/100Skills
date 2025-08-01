@@ -22,7 +22,7 @@ export const editEvent = async(req,res)=>{
         try {
             const {id} = req.params;
 
-            const{eventImage ,eventName , location , registrationStartDate , registrationEndDate , eventDate , registerLink , mode , paymentType , eventType} = req.body;
+            const{eventImage ,eventName , location , registrationStartDate , registrationEndDate , eventDate , registerLink , mode , paymentType} = req.body;
 
         const updatedEvent = await Event.findByIdAndUpdate(id , {
             eventImage,
@@ -34,7 +34,7 @@ export const editEvent = async(req,res)=>{
             registerLink,
             mode,
             paymentType,
-            eventType,
+            
         },
     {new: true});
 
