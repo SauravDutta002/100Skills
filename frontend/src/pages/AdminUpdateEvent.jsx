@@ -29,6 +29,7 @@ const { event } = location.state || {};
         paymentType:"",
         eventDescription:"",
         AdditionalInfo:"",
+        eventType:"",
        
     });
 
@@ -218,6 +219,22 @@ useEffect(() => {
               </div>
             </div>
           </div>
+
+           {/*Event Type */}
+          <div className="flex flex-col">
+  <label className="font-semibold">Event Type</label>
+  <select
+    name="eventType"
+    value={formData.eventType}
+    onChange={handelChange}
+    className="border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-amber-400"
+  >
+    <option value="hackathon">Hackathon</option>
+    <option value="ideathon">Ideathon</option>
+    <option value="workshop">Workshop</option>
+    <option value="competition">Competition</option>
+  </select>
+</div>
 
           <div className="flex flex-col">
             <label className="font-semibold">Registration Link</label>

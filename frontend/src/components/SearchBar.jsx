@@ -120,7 +120,7 @@ const SearchBar = ({closeSearch}) => {
 // Category Component
 const Category = ({ icon, label , path ,navigate , closeSearch }) => (
   <div onClick={()=>{navigate(path) , closeSearch()}} className="flex items-center gap-2 hover:text-blue-600 cursor-pointer border rounded-full px-3 py-2">
-    <div className="bg-blue-400 rounded-full px-3 py-3 text-white">{icon}</div>
+    <div className="bg-blue-400 rounded-full px-2 py-2 text-white">{icon}</div>
     <span>{label}</span>
   </div>
 );

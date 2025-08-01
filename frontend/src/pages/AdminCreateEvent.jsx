@@ -110,19 +110,19 @@ const uploadToCloudinary = async (file) => {
       // });
 
 
-//       setFormData({
-//   eventName: "",
-//   location: "",
-//   registrationStartDate: "",
-//   registrationEndDate: "",
-//   eventDate: "",
-//   registerLink: "",
-//   mode: "", // Or set it back to mode if desired
-//   paymentType: "", // Or set it back to paymentType
-//   eventDescription: "",
-//   AdditionalInfo: "",
-//   eventType: "competition", // ✅ Reset to default
-// });
+      setFormData({
+  eventName: "",
+  location: "",
+  registrationStartDate: "",
+  registrationEndDate: "",
+  eventDate: "",
+  registerLink: "",
+  mode: "", // Or set it back to mode if desired
+  paymentType: "", // Or set it back to paymentType
+  eventDescription: "",
+  AdditionalInfo: "",
+  eventType: "competition", // ✅ Reset to default
+});
 
       setEventImage(null);
 
