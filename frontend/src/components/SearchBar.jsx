@@ -66,10 +66,10 @@ const SearchBar = ({closeSearch}) => {
           {/* Categories */}
           <h2 className="text-lg font-semibold text-gray-800 mb-4">Categories</h2>
           <div className="text-gray-700 flex gap-3 flex-wrap">
-            <Category icon="💻" label="Hackathons" />
-            <Category icon="💡" label="Ideathons" />
-            <Category icon="🏆" label="Competitions" />
-            <Category icon="🧑‍🏫" label="Workshops" />
+            <Category icon="💻" label="Hackathons" path ='/hackathon' navigate = {navigate} closeSearch = {closeSearch}/>
+            <Category icon="💡" label="Ideathons" path ='/ideathons' navigate = {navigate} closeSearch = {closeSearch} />
+            <Category icon="🏆" label="Competitions" path ='/competitions' navigate = {navigate} closeSearch = {closeSearch} />
+            <Category icon="🧑‍🏫" label="Workshops" path ='/workshops' navigate = {navigate} closeSearch = {closeSearch} />
             <Category icon="📦" label="Others" />
             <Category icon="📦" label="All" />
           </div>
@@ -118,9 +118,9 @@ const SearchBar = ({closeSearch}) => {
 };
 
 // Category Component
-const Category = ({ icon, label }) => (
-  <div className="flex items-center gap-2 hover:text-blue-600 cursor-pointer border rounded-full px-3 py-2">
-    <div className="bg-blue-400 rounded-full px-2 py-2 text-white">{icon}</div>
+const Category = ({ icon, label , path ,navigate , closeSearch }) => (
+  <div onClick={()=>{navigate(path) , closeSearch()}} className="flex items-center gap-2 hover:text-blue-600 cursor-pointer border rounded-full px-3 py-2">
+    <div className="bg-blue-400 rounded-full px-3 py-3 text-white">{icon}</div>
     <span>{label}</span>
   </div>
 );
