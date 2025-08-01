@@ -7,6 +7,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import ErrorLoader from '../components/ErrorLoader';
 import { FaLaptopCode } from "react-icons/fa6";
 import { TbWorldSearch } from "react-icons/tb";
+import SearchBoxTop from '../components/SearchBoxTop';
 
 
 const Hakathons = () => {
@@ -67,17 +68,7 @@ const Hakathons = () => {
         </div>
       )} */}
 
-           <div className="flex items-center gap-2 bg-white rounded-xl shadow px-4 py-2 mb-6">
-              <TbWorldSearch className="text-xl text-gray-500" />
-              <input
-                type="text"
-                placeholder="Search for events..."
-                className="w-full border-none outline-none text-base"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                onClick={()=>{setOpenSearch(true)}}
-              />
-            </div>
+      <SearchBoxTop/>
       {/* Trending Events */}
       <section className="w-full flex flex-col gap-5">
         <div className="flex items-center gap-2 text-2xl font-semibold px-4 md:p-0">
