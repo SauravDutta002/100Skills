@@ -1,51 +1,58 @@
-// import React from 'react';
-
-// const Footer = () => {
-//   return (
-//     <footer className="w-full bg-[#b7b7b7] mb-12 border-t py-4 px-4 flex flex-col items-center justify-center text-center sm:mb-0">
-//       <h2 className="text-lg font-semibold text-gray-800">DEV - SAURAV DUTTA</h2>
-//       <p className="text-sm text-gray-700 mt-1">
-//         Developed with ❤️ to help students find opportunities.
-//       </p>
-//       <p className="text-xs text-gray-600 mt-2">© {new Date().getFullYear()} All Rights Reserved.</p>
-//     </footer>
-//   );
-// };
-
-// export default Footer;
-
 import React from 'react';
 import { VscCode } from "react-icons/vsc";
 import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#b7b7b7] py-6 px-4 border-t text-center flex flex-col items-center justify-center gap-2 sm:gap-3 mb-16 sm:mb-0 font-mono">
-      <div className="flex items-center gap-2 text-gray-800 text-xl font-bold tracking-wide ">
-        <VscCode size={24} />
-        <span>DEV - SAURAV DUTTA</span>
-         <div className="flex gap-4">
-        <a
-          href="https://sauravdutta.netlify.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Portfolio"
-          className="text-gray-800 hover:text-blue-600 transition"
-        >
-          <FaGlobe size={20} />
-        </a>
-        
-        
+    <footer className="w-full bg-gray-100 py-6 px-4 border-t font-mono text-gray-800 mb-12">
+      <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4 max-w-5xl mx-auto text-center sm:text-left">
+
+        {/* Brand */}
+        <div className="flex items-center gap-2 text-lg font-bold tracking-wide">
+
+          <span>100Skills</span>
+        </div>
+
+        {/* Creator Info */}
+        <div>
+          <p className="text-sm font-medium"> Created by Saurav Dutta</p>
+          <p className="text-xs text-gray-600">Made to help students find opportunities</p>
+        </div>
+
+        {/* Social Links */}
+        <div className="flex gap-4">
+          <a
+            href="https://sauravdutta.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Portfolio"
+            className="hover:text-blue-600 transition"
+          >
+            <FaGlobe size={18} />
+          </a>
+          <a
+            href="https://github.com/SauravDutta002"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub"
+            className="hover:text-blue-600 transition"
+          >
+            <FaGithub size={18} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/saurav-dutta-450355315/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn"
+            className="hover:text-blue-600 transition"
+          >
+            <FaLinkedin size={18} />
+          </a>
+        </div>
       </div>
-      </div>
 
-      <p className="text-sm text-gray-700 max-w-md">
-        Developed with ❤️ to help students discover and grab the right opportunities.
-      </p>
-
-     
-
-      <p className="text-xs text-gray-600 mt-3">
+      {/* Copyright */}
+      <p className="text-center text-xs text-gray-500 mt-4">
         © {new Date().getFullYear()} Saurav Dutta. All rights reserved.
       </p>
     </footer>
