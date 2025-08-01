@@ -13,6 +13,7 @@ import AdminUpdateEvent from './pages/AdminUpdateEvent';
 import HomePageEvents from './pages/HomePageEvents';
 import Hackathons from './pages/Hakathons';
 import SearchBar from './components/SearchBar';
+import Ideathons from './pages/Ideathons';
 const App = () => {
 
 
@@ -23,7 +24,8 @@ const App = () => {
     <Routes>
       <Route  element={<Layout/>}>
       <Route path='/' element={<HomePageEvents/>} />
-      <Route path='/hakathon' element={<Hackathons/>} />
+      <Route path='/hackathon' element={<Hackathons/>} />
+      <Route path='/ideathons' element={<Ideathons/>} />
       <Route path='/event/:id' element={<EventDetails/>} />
       <Route path='/create' element={<Uploadclod/>} />
       <Route path='/clublogin' element={<AdminLogin/>} />

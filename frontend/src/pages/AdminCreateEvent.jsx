@@ -28,6 +28,7 @@ const AdminCreateEvent = () => {
         paymentType:"",
         eventDescription:"",
         AdditionalInfo:"",
+        eventType: "competition", // ✅ NEW FIELD
        
     });
 
@@ -95,18 +96,33 @@ const uploadToCloudinary = async (file) => {
     });
 
       alert("Event created successfully!");
-      setFormData({
-        eventName: "",
-        location: "",
-        registrationStartDate: "",
-        registrationEndDate: "",
-        eventDate: "",
-        registerLink: "",
-        mode,
-        paymentType,
-        eventDescription:"",
-        AdditionalInfo:"",
-      });
+      // setFormData({
+      //   eventName: "",
+      //   location: "",
+      //   registrationStartDate: "",
+      //   registrationEndDate: "",
+      //   eventDate: "",
+      //   registerLink: "",
+      //   mode,
+      //   paymentType,
+      //   eventDescription:"",
+      //   AdditionalInfo:"",
+      // });
+
+
+//       setFormData({
+//   eventName: "",
+//   location: "",
+//   registrationStartDate: "",
+//   registrationEndDate: "",
+//   eventDate: "",
+//   registerLink: "",
+//   mode: "", // Or set it back to mode if desired
+//   paymentType: "", // Or set it back to paymentType
+//   eventDescription: "",
+//   AdditionalInfo: "",
+//   eventType: "competition", // ✅ Reset to default
+// });
 
       setEventImage(null);
 
@@ -116,6 +132,10 @@ const uploadToCloudinary = async (file) => {
     } finally {
     }
   };
+
+  useEffect(() => {
+  console.log("Event Type:", formData.eventType);
+}, [formData.eventType]);
 
 
 const handelChange = (e)=>{
@@ -202,6 +222,23 @@ useEffect(() => {
               </div>
             </div>
           </div>
+
+          {/*Event Type */}
+          <div className="flex flex-col">
+  <label className="font-semibold">Event Type</label>
+  <select
+    name="eventType"
+    value={formData.eventType}
+    onChange={handelChange}
+    className="border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-amber-400"
+  >
+    <option value="hackathon">Hackathon</option>
+    <option value="ideathon">Ideathon</option>
+    <option value="workshop">Workshop</option>
+    <option value="competition">Competition</option>
+  </select>
+</div>
+
 
           <div className="flex flex-col">
             <label className="font-semibold">Registration Link</label>

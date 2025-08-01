@@ -64,10 +64,12 @@ const Layout = () => {
 
       {/* Show SearchBar on top of everything */}
       {mobileToggle && (
-        <div className="fixed w-full h-full bg-white z-[100] overflow-auto">
-          <SearchBar closeSearch={() => setMobileToggle(false)} />
-        </div>
-      )}
+  <div className="fixed inset-0 w-full h-full bg-white z-[100] overflow-auto">
+    <Navbar/>
+    <SearchBar closeSearch={() => setMobileToggle(false)} />
+  </div>
+)}
+
 
       <Outlet context={{ search, setSearch, mobileToggle, setMobileToggle }} />
 

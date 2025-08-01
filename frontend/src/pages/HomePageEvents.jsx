@@ -176,13 +176,13 @@ const HomePageEvents = () => {
       name: 'Hackathons',
       color: 'bg-gradient-to-r from-yellow-300 to-yellow-400',
       icon: <FaLaptopCode className="text-4xl text-blue-400" />,
-      path : "/hakathon",
+      path : "/hackathon",
     },
     {
       name: 'IdeaThon',
       color: 'bg-gradient-to-r from-orange-400 to-yellow-300',
       icon: <FaLightbulb className="text-4xl text-yellow-400 " />,
-      path : "/ideathon",
+      path : "/ideathons",
 
     },
     {

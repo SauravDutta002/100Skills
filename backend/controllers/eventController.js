@@ -1,81 +1,5 @@
 import Event from "../models/Event.js"
 
-// export const createEvent = async(req,res)=>{
-
-//    try {
-//         const{eventImage ,eventName , location , registrationStartDate , registrationEndDate , eventDate , registerLink , mode , paymentType} = req.body;
-
-        
-//         const clubId = req.club.id;
-
-//         const newEvent = new Event({
-//             eventImage,
-//             eventName,
-//             location,
-//             registrationStartDate,
-//             registrationEndDate,
-//             eventDate,
-//             registerLink,
-//             mode,
-//             paymentType,
-//             club: clubId,
-//         })
-
-//         await newEvent.save();
-//         res.status(201).json({message:"Event Created Sucessfully"} , newEvent )
-//    } catch (error) {
-//     console.log(error)
-//    }
-// }
-
-
-// export const createEvent = async (req, res) => {
-//   try {
-//     const {
-//       eventImage,
-//       eventName,
-//       location,
-//       registrationStartDate,
-//       registrationEndDate,
-//       eventDate,
-//       registerLink,
-//       mode,
-//       paymentType,
-//       eventDescription,
-//       AdditionalInfo
-//     } = req.body;
-
-//     const clubId = req.club.id; // set by auth middleware
-
-//     const newEvent = new Event({
-//       eventImage,
-//       eventName,
-//       location,
-//       registrationStartDate,
-//       registrationEndDate,
-//       eventDate,
-//       registerLink,
-//       mode,
-//       paymentType,
-//       eventDescription,
-//       AdditionalInfo,
-//       club: clubId,
-//     });
-
-//     await newEvent.save();
-
-//     res.status(201).json({
-//       message: "Event Created Successfully",
-//       event: newEvent
-//     });
-
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server Error", error: error.message });
-//   }
-// };
-
-
 export const createEvent = async (req, res) => {
   try {
     const {
@@ -89,7 +13,8 @@ export const createEvent = async (req, res) => {
       mode,
       paymentType,
       eventDescription,
-      AdditionalInfo
+      AdditionalInfo,
+      eventType,
     } = req.body;
 
     const clubId = req.club.id;
@@ -115,6 +40,7 @@ export const createEvent = async (req, res) => {
       paymentType,
       eventDescription,
       AdditionalInfo,
+      eventType,
       club: clubId,
     });
 
@@ -130,7 +56,6 @@ export const createEvent = async (req, res) => {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
-
 
 
 
