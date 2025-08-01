@@ -6,14 +6,18 @@ const SearchBoxTop = () => {
     const {mobileToggle , setMobileToggle} = useOutletContext();
 
   return (
-        <div className="flex items-center gap-2 bg-white rounded-xl shadow px-4 py-2 mb-6">
+        <div 
+        
+            onClick={()=>{setMobileToggle(true)}}
+        className="flex items-center gap-2 bg-white rounded-xl shadow px-4 py-2 mb-6">
            <TbWorldSearch className="text-xl text-gray-500" />
-           <input
+           <span className='text-black/40'>Search...</span>
+           {/* <input
              type="text"
              placeholder="Search for events..."
              className="w-full border-none outline-none text-base"
             onClick={()=>{setMobileToggle(true)}}
-           />
+           /> */}
          </div>
   )
 }
