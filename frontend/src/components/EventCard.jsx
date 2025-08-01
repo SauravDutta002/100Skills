@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Countdown from "./Countdown";
 import { LuAlarmClock } from "react-icons/lu";
 import { FaRegCircleDot } from "react-icons/fa6";
+import { HiAcademicCap } from "react-icons/hi";
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
 
@@ -20,16 +21,17 @@ const EventCard = ({ event }) => {
       {/* Event Image */}
       <div className="h-[25vh] w-full overflow-hidden px-0.5 py-0.5">
         <img
-          src={event.eventImage.url}
+          src={event.eventImage.url} 
           alt="Event"
           className="object-cover h-full w-full rounded-t-2xl"
         />
       </div>
 
       {/* Labels */}
-      <div className="flex flex-wrap text-xs sm:text-sm px-2 py-1 gap-2 items-center">
+      <div className="flex text-xs sm:text-sm px-2 py-1 gap-2 items-center">
         <span className="border border-gray-600 rounded-full w-[42px] h-[42px] sm:w-[3vw] sm:h-[3vw] overflow-hidden flex items-center justify-center">
-          <img src="" alt="Organizer" className="object-cover w-full h-full" />
+          {/* <img src="" alt="Organizer" className="object-cover w-full h-full" /> */}
+          <HiAcademicCap className="text-xl"/>
         </span>
 
         {event.paymentType === "Free" ? (
@@ -51,14 +53,13 @@ const EventCard = ({ event }) => {
             Offline
           </span>
         )}
-
-       
-      {Date.now() < new Date(event.registrationEndDate).getTime() ? (
-  <span className="px-2 rounded border h-6 text-red-500 flex items-center font-extrabold gap-1">
-    <FaRegCircleDot className="animate-pulse"/> Live
+{Date.now() < new Date(event.registrationEndDate).getTime() ? (
+  <span className="px-2 py-1 rounded-full text-[10px] border border-red-500 text-red-500 flex items-center gap-1 whitespace-nowrap ml-auto">
+    <FaRegCircleDot className="animate-pulse text-[10px]" />
+    Live
   </span>
 ) : (
-  <span className="px-2 rounded h-6 text-black bg-red-400/80 flex items-center font-extrabold">
+  <span className="px-2 py-0.5 rounded-full text-[10px] bg-red-500 text-white flex items-center whitespace-nowrap ml-auto">
     Ended
   </span>
 )}
