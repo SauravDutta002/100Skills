@@ -151,6 +151,10 @@ import { useNavigate } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import SearchBoxTop from '../components/SearchBoxTop';
 import { BsTrophyFill } from "react-icons/bs";
+import { MdOutlineMoneyOff, MdOutlineAttachMoney } from "react-icons/md";
+import { CiLocationOn } from "react-icons/ci";
+import { MdOutlineArrowOutward } from "react-icons/md";
+
 
 const HomePageEvents = () => {
   const Base_Url = "https://one00skills.onrender.com/api";
@@ -296,24 +300,32 @@ const HomePageEvents = () => {
                 alt={event.eventName}
                 className="h-40 w-full object-cover rounded-t-xl"
               />
-              <div className="p-4">
+              <div className="px-4 py-2 flex flex-col ">
                 <h3 className="text-lg font-bold text-gray-800">{event.eventName}</h3>
+                <div className='flex gap-1 items-center mb-3'> <CiLocationOn/> <span>{event.location}</span></div>
                 <div className='flex gap-2'>
+                   {event.paymentType === "Free" ? (
+                            <span className="px-2 rounded-2xl border border-gray-600 flex items-center gap-1 h-6">
+                              <MdOutlineMoneyOff className="text-red-400" />  Free
+                            </span>
+                          ) : (
+                            <span className="px-2 rounded-2xl border border-gray-600 flex items-center gap-1 h-6">
+                               <MdOutlineAttachMoney className="text-green-400" /> Paid
+                            </span>
+                          )}
+                  
+                          {event.mode === "online" ? (
+                            <span className="px-2 rounded-2xl border border-gray-600 h-6 text-blue-500 flex items-center">
+                              Online
+                            </span>
+                          ) : (
+                            <span className="px-2 rounded-2xl border border-gray-600 h-6 flex items-center">
+                              Offline
+                            </span>
+                          )}
 
-                <p className="text-sm text-gray-600 mt-1 ">
-                  <span className='border px-1 py-1 rounded-xl'>
-
-                  {event.mode} 
-                  </span>
-                </p>
-                 <p className="text-sm text-gray-600 mt-1 ">
-                  <span className='border px-1 py-1 rounded-xl'>
-
-                  {event.paymentType } 
-                  </span>
-                </p>
-                </div>
-               
+                          <div className='w-full flex justify-end '><MdOutlineArrowOutward className='text-2xl border rounded-full '/></div>
+               </div>
               </div>
             </div>
           ))}
@@ -324,7 +336,6 @@ const HomePageEvents = () => {
 
       {/* )} */}
       
-     
     </div>
   );
 };
