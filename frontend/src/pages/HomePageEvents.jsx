@@ -241,7 +241,6 @@ const HomePageEvents = () => {
   <BsTrophyFill className="text-yellow-400 text-xl md:text-2xl" />
 </div>
 
-
          <div className='px-4 py-6'>
 
 

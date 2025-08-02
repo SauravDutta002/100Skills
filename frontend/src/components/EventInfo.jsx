@@ -139,6 +139,7 @@ import { FaLocationDot, FaRegCircleDot } from "react-icons/fa6";
 import { MdOutlineMoneyOff, MdOutlineAttachMoney } from "react-icons/md";
 import { CgSandClock } from "react-icons/cg";
 import Countdown from "./Countdown";
+import { useNavigate } from "react-router-dom";
 
 // const Base_URL = "http://localhost:5000/api";
 
@@ -158,6 +159,8 @@ const EventInfo = ({eventData}) => {
   //   };
   //   getDataById();
   // }, [id]);
+
+  const navigate = useNavigate()
 
   return (
     <div className="min-h-screen w-full bg-[#edecec] font-mono">
@@ -255,10 +258,17 @@ const EventInfo = ({eventData}) => {
                   </div>
                 </div>
 
-                <button className="bg-blue-500 text-white px-2 py-5 sm:px-4 sm:py-2 rounded-md w-[40%] sm:w-auto  sm:text-base">
+                 <a
+            href={eventData.registerLink}
+            
+          >
+            <button  className="bg-blue-500 text-white px-2 py-5 sm:px-4 sm:py-2 rounded-md w-[40%] sm:w-auto  sm:text-base">
+                  
                   REGISTER
                 </button>
+          </a>
               </div>
+                
 
               {/* Description */}
               <div className="bg-white w-full rounded-xl px-2 py-2 flex flex-col sm:flex-row gap-2">
