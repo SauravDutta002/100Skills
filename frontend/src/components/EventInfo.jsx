@@ -222,11 +222,24 @@ const EventInfo = ({eventData}) => {
                 </div>
 
                 {/* Live Badge */}
-                <div className=" ">
+                {/* <div className=" ">
+                  <span className="border rounded-2xl border-red-500 px-2 py-0.5 flex items-center gap-1.5 text-xs sm:text-base text-red-600 font-semibold">
+                    <FaRegCircleDot className="animate-pulse" /> LIVE
+                  </span>
+                </div> */}
+                {Date.now() < new Date(eventData.registrationEndDate).getTime() ? (
+                   <div className=" ">
                   <span className="border rounded-2xl border-red-500 px-2 py-0.5 flex items-center gap-1.5 text-xs sm:text-base text-red-600 font-semibold">
                     <FaRegCircleDot className="animate-pulse" /> LIVE
                   </span>
                 </div>
+                ) : (
+                    <div className=" ">
+                  <span className="border rounded-2xl border-red-500 px-2 py-0.5 flex items-center gap-1.5 text-xs sm:text-base text-black font-semibold bg-red-400/80">
+                   Ended
+                  </span>
+                </div>
+                )}
               </div>
 
               {/* Timer */}
