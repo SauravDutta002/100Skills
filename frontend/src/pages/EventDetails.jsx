@@ -34,7 +34,7 @@ const EventDetails = () => {
     useEffect(() => {
     const fetchClubImage = async () => {
       try {
-        const response = await api.get(`getClubImageById/${ClubId}`);
+        const response = await api.get(`/getClubImageById/${ClubId}`);
         setImageUrl(response.data.clubProfileImg);
         
         
