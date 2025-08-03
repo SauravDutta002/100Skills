@@ -103,3 +103,78 @@ export const getProfileData = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+
+export const editProfileData = async (req, res) => {
+  try {
+    const clubId = req.club?.id || req.user?.id;
+
+    if (!clubId) {
+      return res.status(400).json({ message: "Club ID not found in token" });
+    }
+
+    const { clubName, clubProfileImg } = req.body;
+
+    const updatedClub = await ClubAdmin.findByIdAndUpdate(
+      clubId,
+      {
+        ...(clubName && { clubName }),
+        ...(clubProfileImg && { clubProfileImg }),
+      },
+      { new: true }
+    );
+
+    if (!updatedClub) {
+      return res.status(404).json({ message: "Club not found" });
+    }
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      club: updatedClub,
+    });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+// Backend Controller
+export const updateClubProfileImage = async (req, res) => {
+  try {
+    const clubId = req.club?.id || req.user?.id; // assuming token gives you user/club id
+    const { clubProfileImg } = req.body;
+
+    const updatedClub = await ClubAdmin.findByIdAndUpdate(
+      clubId,
+      { clubProfileImg },
+      { new: true }
+    );
+
+    if (!updatedClub) return res.status(404).json({ error: "Club not found" });
+
+    res.status(200).json({ message: "Profile image updated", updatedClub });
+  } catch (err) {
+    console.error("❌ Error updating image:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+
+export const getClubImageById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const club = await ClubAdmin.findById(id).select("clubProfileImg"); // only fetch the image field
+
+    if (!club) {
+      return res.status(404).json({ message: "Club not found" });
+    }
+
+    res.status(200).json({ clubProfileImg: club.clubProfileImg });
+
+  } catch (error) {
+    console.error("Error fetching club image by ID:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};

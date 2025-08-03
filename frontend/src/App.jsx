@@ -17,6 +17,7 @@ import Ideathons from './pages/Ideathons';
 import Wrokshops from './pages/Workshops';
 import Competitions from './pages/Competitions';
 import HeadAdminLogin from './pages/HeadAdminLogin';
+
 const App = () => {
 
 
@@ -39,6 +40,7 @@ const App = () => {
       <Route path='/headadmin' element={<HeadAdminDashboard/>}/>
       <Route path='/edit/:id' element={<AdminUpdateEvent/>}/>
       <Route path='/search' element={<SearchBar/>}/>
+    
       
       //! Head Admin 
       <Route path='/headAdminlogin' element={<HeadAdminLogin/>}/>

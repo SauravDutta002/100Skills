@@ -129,10 +129,7 @@
 // export default EventInfo;
 
 
-
-
 import React, { useEffect, useState } from "react";
-// import testImg from "../assets/testimg.jpeg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaLocationDot, FaRegCircleDot } from "react-icons/fa6";
@@ -142,7 +139,7 @@ import Countdown from "./Countdown";
 import { useNavigate } from "react-router-dom";
 
 
-const EventInfo = ({eventData}) => {
+const EventInfo = ({eventData , imageUrl}) => {
 
 
   const navigate = useNavigate()
@@ -169,7 +166,7 @@ const EventInfo = ({eventData}) => {
                 {/* Image */}
                 <div className="border h-[100px] w-[190px] sm:h-full sm:w-[18%] rounded-xl overflow-hidden px-0.5 py-0.5 ">
                   <img
-                    src=""
+                    src={imageUrl}
                     alt=""
                     className="h-full w-full object-cover rounded-xl"
                   />
@@ -247,7 +244,7 @@ const EventInfo = ({eventData}) => {
             href={eventData.registerLink}
             
           >
-            <button  className="bg-blue-500 text-white px-2 py-5 sm:px-4 sm:py-2 rounded-md w-[40%] sm:w-auto  sm:text-base">
+            <button  className="bg-blue-500 text-white px-2 py-5 sm:px-4 sm:py-2 rounded-md w-[100%]  sm:w-auto  sm:text-base">
                   
                   REGISTER
                 </button>

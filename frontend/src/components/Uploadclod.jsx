@@ -128,8 +128,6 @@ const CreateEvent = () => {
   <option value="Paid">Paid</option>
 </select>
          
-
-
         <button type="submit" disabled={loading}>
           {loading ? "Creating..." : "Create Event"}
         </button>
