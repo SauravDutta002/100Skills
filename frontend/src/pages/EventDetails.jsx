@@ -44,10 +44,10 @@ const EventDetails = () => {
       }
     };
 
-    if (id) {
+    if (ClubId) {
       fetchClubImage();
     }
-  }, [id]);
+  }, [ClubId]);
 
 
   return (
