@@ -11,7 +11,9 @@ const SearchBar = ({closeSearch}) => {
   const [searchInput, setSearchInput] = useState('');
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [imageUrl, setImageUrl] = useState(null);
+  const [ClubId, setClubId] = useState("")
+  const [clubImages, setClubImages] = useState({});
 
       const navigate = useNavigate();
 
@@ -19,21 +21,125 @@ const SearchBar = ({closeSearch}) => {
     navigate(`/event/${id}`);
   };
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        setLoading(true);
-        const response = await api.get(`/events/allevents`);
-        setEvents(response.data);
-      } catch (error) {
-        alert("Failed to fetch events");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchEvents = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await api.get(`/events/allevents`);
+  //       setEvents(response.data);
+  //       setClubId(response.data);
+        
+  //     } catch (error) {
+  //       alert("Failed to fetch events");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchEvents();
-  }, []);
+  //   fetchEvents();
+  // }, []);
+
+//   useEffect(() => {
+//   const fetchEvents = async () => {
+//     try {
+//       setLoading(true);
+//       const response = await api.get(`/events/allevents`);
+//       const events = response.data;
+//       setEvents(events);
+//       console.log(events)
+
+//       // Assuming each event has a clubId and you want the first one's club image
+//       if (events.length > 0 && events[0].clubId) {
+//         setClubId(events[0].clubId);  // This will trigger the second useEffect
+//       }
+
+//     } catch (error) {
+//       alert("Failed to fetch events");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   fetchEvents();
+// }, []);
+
+useEffect(() => {
+  const fetchEvents = async () => {
+    try {
+      setLoading(true);
+      const response = await api.get(`/events/allevents`);
+      const events = response.data;
+      setEvents(events);
+      console.log("Fetched Events:", events);
+
+      // Fetch images for all events
+      const imagePromises = events.map(async (event) => {
+        try {
+          const res = await api.get(`/getClubImageById/${event.club}`);
+          return { clubId: event.club, imageUrl: res.data.clubProfileImg };
+        } catch (err) {
+          return { clubId: event.club, imageUrl: null };
+        }
+      });
+
+      const images = await Promise.all(imagePromises);
+
+      const imageMap = {};
+      images.forEach(({ clubId, imageUrl }) => {
+        imageMap[clubId] = imageUrl;
+      });
+
+      setClubImages(imageMap);
+
+    } catch (error) {
+      alert("Failed to fetch events");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchEvents();
+  const intervalId = setInterval(fetchEvents, 90000);
+  return () => clearInterval(intervalId);
+}, []);
+
+
+
+// useEffect(() => {
+//   const fetchClubImage = async () => {
+//     try {
+//       const response = await api.get(`/getClubImageById/${ClubId}`);
+//       setImageUrl(response.data.clubProfileImg);
+//       console.log(response.data);
+//     } catch (err) {
+//       setError("Failed to fetch club image");
+//     }
+//   };
+
+//   if (ClubId) {
+//     fetchClubImage();
+//   }
+// }, [ClubId]);
+
+
+    //   useEffect(() => {
+    // const fetchClubImage = async () => {
+    //   try {
+    //     const response = await api.get(`/getClubImageById/${ClubId}`);
+    //     setImageUrl(response.data.clubProfileImg);
+    //     console.log(response.data.clubProfileImg);
+        
+        
+    //   } catch (err) {
+    //     setError('Failed to fetch club image');
+       
+    //   }
+    // };
+
+    // if (ClubId) {
+    //   fetchClubImage();
+    // }
+  // }, [ClubId]);
 
   const filteredEvents = events.filter(event =>
     event?.eventName?.toLowerCase().includes(searchInput.toLowerCase())
@@ -91,7 +197,15 @@ const SearchBar = ({closeSearch}) => {
                 >
                   {/* Placeholder for Image */}
                   <div className="h-20 w-20 bg-yellow-400/15 rounded-lg flex-shrink-0 flex items-center justify-center text-gray-500 text-sm">
-                    <FaCode className='text-2xl'/>
+                     {clubImages[event.club] ? (
+        <img
+          src={clubImages[event.club]}
+          alt=""
+          className="h-full w-full object-cover"
+        />
+      ) : (
+        <FaCode className="text-2xl" />
+      )}
                   </div>
 
                   {/* Event Details */}
