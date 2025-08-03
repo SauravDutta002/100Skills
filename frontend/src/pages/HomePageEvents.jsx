@@ -165,6 +165,11 @@ const HomePageEvents = () => {
   const [loading, setLoading] = useState(true);
   const [openSearch, setOpenSearch] = useState(false);
 
+   useEffect(() => {
+    window.scrollTo(0, 0); // 👈 this forces scroll to top when component loads
+  }, []);
+
+
   const upadteOpensearch = ()=>{
     setOpenSearch(false);
     setMobileToggle(false);
