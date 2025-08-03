@@ -1,5 +1,5 @@
 import Event from "../models/Event.js"
-
+import ClubAdmin from "../models/ClubAdmin.js";
 
 export const getClubsEvents =async (req,res)=>{
     try {
@@ -73,3 +73,33 @@ export const deleteEvent =async (req , res)=>{
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+
+// export const updateClubName = async (req , res) =>{
+//     try {
+        
+//     } catch (error) {
+        
+//     }
+// }
+
+
+export const getProfileData = async (req, res) => {
+  try {
+    const clubId = req.club?.id || req.user?.id;
+
+    if (!clubId) {
+      return res.status(400).json({ message: "Club ID not found in token" });
+    }
+
+    const clubData = await ClubAdmin.findById(clubId);
+
+    if (!clubData) {
+      return res.status(404).json({ message: "Club not found" });
+    }
+
+    res.status(200).json({ club: clubData });
+  } catch (error) {
+    console.error("Error fetching club data:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};

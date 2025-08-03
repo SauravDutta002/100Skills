@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
-const AdminLogin = () => {
+const HeadAdminLogin = () => {
 
     
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ const AdminLogin = () => {
             console.log("cliked")
             try {
               setloading(true);
-                const res = await axios.post(`https://one00skills.onrender.com/api/auth/login` , {
+                const res = await axios.post(`http://localhost:5000/api/auth/headadminLogin` , {
                     userId : userId,
                     password : password,
                 }); 
@@ -28,7 +28,8 @@ const AdminLogin = () => {
 
                 const adminId = res.data.user.id;
 
-                navigate(`/AdminDashboard/${adminId}`)
+                navigate(`/headAdminDashboard`)
+
             } catch (error) {
                 console.log(error);
                 alert("invalid credentials");
@@ -50,12 +51,12 @@ const AdminLogin = () => {
 
       <div className="bg-white w-full max-w-md md:max-w-lg rounded-xl shadow-xl p-8 flex flex-col gap-8">
         
-        <div className="text-center font-bold text-2xl">Club Login</div>
+        <div className="text-center font-bold text-2xl">ADMIN Login</div>
 
         <div className="flex flex-col gap-5">
           {/* CLUB ID */}
           <div className="flex flex-col gap-1">
-            <label htmlFor="clubId" className="text-sm font-semibold">CLUB ID</label>
+            <label htmlFor="clubId" className="text-sm font-semibold">ADMIN ID</label>
             <input
               type="text"
               id="clubId"
@@ -85,13 +86,11 @@ const AdminLogin = () => {
           <button type="submit" onClick={login} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
             Log In
           </button>
-          <button  className="text-blue-500 hover:underline">
-            Login as Admin
-          </button>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default AdminLogin;
+export default HeadAdminLogin;

@@ -5,9 +5,9 @@ import { configDotenv } from "dotenv";
 import connectMongo from "./config/db.js"
 import eventRoutes from "./routes/eventRoutes.js"
 import cloudinaryRoutes from "./routes/cloudinaryRoutes.js";
-import {auth} from "./middlewares/authMiddleware.js"
 import authRoutes from "./routes/auth.js"
 import clubdashboardRoutes from "./routes/clubdashboardRoutes.js"
+import headAdminAuth from "./routes/headAdmin.js"
 configDotenv();
 connectMongo();
 
@@ -24,6 +24,7 @@ app.use("/api/cloudinary", cloudinaryRoutes);
 app.use("/api/auth" , authRoutes);
 
 app.use("/api", clubdashboardRoutes);
+app.use("/api", headAdminAuth);
 
 
 

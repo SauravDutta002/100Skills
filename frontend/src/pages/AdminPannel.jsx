@@ -3,18 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiCirclePlus } from "react-icons/ci";
 import axios from 'axios';
+import api from "../api/axios"
 
-const Base_URL = "https://one00skills.onrender.com/api";
+
+
 
 const AdminPannel = () => {
   const [clubData, setClubData] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [Profile, setProfile] = useState("")
 
   useEffect(() => {
     const fetchMyEvents = async () => {
       try {
-        const res = await axios.get(`${Base_URL}/my`, {
+        const res = await api.get(`/my`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setClubData(res.data);
@@ -44,6 +47,36 @@ const AdminPannel = () => {
     }
   };
 
+
+  useEffect(() => {
+
+    const clubProfileData = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.log("❌ No token found in localStorage");
+        return;
+      }
+
+      try {
+        const response = await axios.get("http://localhost:5000/api/getProfileData", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        console.log("✅ Club Data:", response.data);
+        setProfile(response.data);
+      } catch (error) {
+        console.error("❌ Error:", error.response?.data || error.message);
+      }
+    };
+
+    clubProfileData();
+  }, []);
+
+  
+
   return (
     <div className="w-full min-h-screen px-4 py-4 bg-gray-100">
       {/* Header */}
@@ -52,7 +85,7 @@ const AdminPannel = () => {
           <div className="h-16 w-16 bg-gray-300 rounded-full overflow-hidden border">
             <img src="" alt="club logo" className="w-full h-full object-cover" />
           </div>
-          <div className="text-xl font-bold text-blue-600">CLUB NAME</div>
+          <div className="text-xl font-bold text-blue-600"> {Profile.club?.clubName ? Profile.club.clubName : "CLUB NAME"}</div>
         </div>
         <div className="flex items-center gap-4">
           <button

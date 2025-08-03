@@ -154,10 +154,10 @@ import { BsTrophyFill } from "react-icons/bs";
 import { MdOutlineMoneyOff, MdOutlineAttachMoney } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineArrowOutward } from "react-icons/md";
+import api from "../api/axios"
 
 
 const HomePageEvents = () => {
-  const Base_Url = "https://one00skills.onrender.com/api";
    const { mobileToggle , setMobileToggle} = useOutletContext();
 
   const [events, setEvents] = useState([]);
@@ -209,7 +209,7 @@ const HomePageEvents = () => {
     const getAllEvents = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${Base_Url}/events/allevents`);
+        const response = await api.get(`/events/allevents`);
         setEvents(response.data);
       } catch (error) {
         console.error("Error fetching events:", error);

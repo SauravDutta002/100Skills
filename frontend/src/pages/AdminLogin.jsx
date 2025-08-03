@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
+import api from "../api/axios"
+
 const AdminLogin = () => {
 
     
@@ -19,7 +21,7 @@ const AdminLogin = () => {
             console.log("cliked")
             try {
               setloading(true);
-                const res = await axios.post(`https://one00skills.onrender.com/api/auth/login` , {
+                const res = await api.post(`/auth/login` , {
                     userId : userId,
                     password : password,
                 }); 
@@ -85,7 +87,7 @@ const AdminLogin = () => {
           <button type="submit" onClick={login} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
             Log In
           </button>
-          <button  className="text-blue-500 hover:underline">
+          <button onClick={()=>{navigate("/headAdminlogin")}} className="text-blue-500 hover:underline">
             Login as Admin
           </button>
         </div>
