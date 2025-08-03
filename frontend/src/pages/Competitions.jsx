@@ -15,6 +15,10 @@ const Competitions = () => {
 
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+     useEffect(() => {
+      window.scrollTo(0, 0); // 👈 this forces scroll to top when component loads
+    }, []);
 
   useEffect(() => {
     const getAllEvents = async () => {
