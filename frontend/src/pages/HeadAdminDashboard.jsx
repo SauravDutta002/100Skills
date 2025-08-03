@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MdGroups, MdLibraryAdd, MdFileDownloadDone } from "react-icons/md";
 import Loader from "../components/Loader";
+import api from "../api/axios"
 
 const HeadAdminDashboard = () => {
   const [clubs, setClubs] = useState([]);
@@ -19,7 +20,7 @@ const HeadAdminDashboard = () => {
     const fetchClubs = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5000/api/getAllClubs", {
+        const res = await api.get("/getAllClubs", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -40,8 +41,8 @@ const HeadAdminDashboard = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/registerNewClub",
+      const res = await api.post(
+        "/registerNewClub",
         formData,
         {
           headers: {

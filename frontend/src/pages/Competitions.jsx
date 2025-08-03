@@ -6,9 +6,10 @@ import axios from "axios";
 import HomeLoader from "../components/Loaders/HomeLoader";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import SearchBoxTop from '../components/SearchBoxTop';
+import api from "../api/axios"
+
 
 const Competitions = () => {
-  const Base_Url = "https://one00skills.onrender.com/api";
   const navigate = useNavigate();
   const { search } = useOutletContext();
 
@@ -19,7 +20,7 @@ const Competitions = () => {
     const getAllEvents = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${Base_Url}/events/allevents`);
+        const response = await api.get(`/events/allevents`);
         setEvents(response.data);
       } catch (error) {
         alert("Error fetching events");

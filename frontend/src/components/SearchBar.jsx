@@ -4,8 +4,9 @@ import axios from 'axios';
 import { TiArrowBack } from "react-icons/ti";
 import { FaCode } from "react-icons/fa";
 import {useNavigate} from "react-router-dom"
+import api from "../api/axios"
 const SearchBar = ({closeSearch}) => {
-  const Base_Url = "https://one00skills.onrender.com/api";
+
 
   const [searchInput, setSearchInput] = useState('');
   const [events, setEvents] = useState([]);
@@ -22,7 +23,7 @@ const SearchBar = ({closeSearch}) => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${Base_Url}/events/allevents`);
+        const response = await api.get(`/events/allevents`);
         setEvents(response.data);
       } catch (error) {
         alert("Failed to fetch events");

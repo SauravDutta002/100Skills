@@ -141,24 +141,9 @@ import { CgSandClock } from "react-icons/cg";
 import Countdown from "./Countdown";
 import { useNavigate } from "react-router-dom";
 
-// const Base_URL = "http://localhost:5000/api";
 
 const EventInfo = ({eventData}) => {
-  // const { id } = useParams();
-  // const [eventData, setEventData] = useState([]);
 
-  // useEffect(() => {
-  //   const getDataById = async () => {
-  //     try {
-  //       const response = await axios.get(`${Base_URL}/events/get/${id}`);
-  //       setEventData(response.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //       alert("Error fetching the event by id");
-  //     }
-  //   };
-  //   getDataById();
-  // }, [id]);
 
   const navigate = useNavigate()
 

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
+import api from "../api/axios"
+
 const HeadAdminLogin = () => {
 
     
@@ -19,7 +21,7 @@ const HeadAdminLogin = () => {
             console.log("cliked")
             try {
               setloading(true);
-                const res = await axios.post(`http://localhost:5000/api/auth/headadminLogin` , {
+                const res = await api.post(`/auth/headadminLogin` , {
                     userId : userId,
                     password : password,
                 }); 

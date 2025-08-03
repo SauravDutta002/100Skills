@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import EventInfo from '../components/EventInfo'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
-const Base_URL = "https://one00skills.onrender.com/api";
+import api from "../api/axios"
 
 const EventDetails = () => {
 
@@ -17,7 +16,7 @@ const EventDetails = () => {
   useEffect(() => {
     const getDataById = async () => {
       try {
-        const response = await axios.get(`${Base_URL}/events/get/${id}`);
+        const response = await api.get(`/events/get/${id}`);
         setEventData(response.data);
       } catch (error) {
         console.log(error);
@@ -27,7 +26,6 @@ const EventDetails = () => {
     getDataById();
   }, [id]);
 
-  
   return (
     <div>
       <EventInfo eventData ={eventData}/>

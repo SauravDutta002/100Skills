@@ -59,7 +59,7 @@ const AdminPannel = () => {
       }
 
       try {
-        const response = await axios.get("http://localhost:5000/api/getProfileData", {
+        const response = await api.get("/getProfileData", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
