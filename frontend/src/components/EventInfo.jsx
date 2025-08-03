@@ -253,7 +253,7 @@ const EventInfo = ({eventData , imageUrl}) => {
                 
 
               {/* Description */}
-              <div className="bg-white w-full rounded-xl px-2 py-2 flex flex-col sm:flex-row gap-2">
+              <div className="bg-white w-full rounded-xl px-2 py-2 flex flex-col gap-2">
                 <div className="text-lg font-semibold">DESCRIPTION</div>
                 <div className="text-sm sm:text-base">{eventData.eventDescription || "No description available."}</div>
               </div>
@@ -262,7 +262,7 @@ const EventInfo = ({eventData , imageUrl}) => {
             {/* Box 2 */}
             <div className="w-full flex  sm:px-2">
               <div className="bg-white rounded-2xl w-full h-full px-2 py-2">
-                <div className="font-semibold text-lg">More Details</div>
+                <div className="font-semibold text-lg flex flex-col gap-2">More Details</div>
                 {/* You can add additional content here */}{eventData.AdditionalInfo}
               </div>
             </div>

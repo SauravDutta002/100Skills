@@ -290,7 +290,7 @@ const HomePageEvents = () => {
       </div>
 
       {/* Featured Events Horizontal Scroll */}
-      <div className="mt-6 bg-white py-1 rounded-xl overflow-hidden">
+      {/* <div className="mt-6 bg-white py-1 rounded-xl overflow-hidden">
         <h2 className="text-xl font-semibold text-gray-800 mb-3 border-l border-amber-500">Featured Events</h2>
         <div className="flex space-x-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300">
           {events.slice(0, 10).map(event => (
@@ -334,7 +334,67 @@ const HomePageEvents = () => {
             </div>
           ))}
         </div>
+      </div> */}
+
+      <div className="mt-6 bg-white py-4 px-4 rounded-2xl overflow-hidden shadow-md">
+  <h2 className="text-2xl font-semibold text-gray-800 mb-5 border-l-4 pl-3 border-amber-500">
+    Featured Events
+  </h2>
+
+  <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300">
+    {/* {events.slice(0, 10).map((event) => ( */}
+    {[...events]
+  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  .slice(0, 10)
+  .map(event => (
+      <div
+        key={event._id}
+        onClick={() => eventDetails(event._id)}
+        className="min-w-[280px] max-w-[280px] bg-white rounded-xl shadow hover:shadow-lg transition-shadow duration-300 snap-start flex-shrink-0 cursor-pointer"
+      >
+        <img
+          src={event.eventImage?.url}
+          alt={event.eventName}
+          className="h-40 w-full object-cover rounded-t-xl"
+        />
+        <div className="px-4 py-3 flex flex-col gap-2">
+          <h3 className="text-lg font-bold text-gray-800 truncate">{event.eventName}</h3>
+
+          <div className="flex items-center text-sm text-gray-500 gap-1">
+            <CiLocationOn className="text-lg" /> {event.location}
+          </div>
+
+          <div className="flex flex-wrap gap-2 items-center text-sm mt-1">
+            {event.paymentType === "Free" ? (
+              <span className="px-2 rounded-full border border-gray-400 flex items-center gap-1 h-6">
+                <MdOutlineMoneyOff className="text-red-400" /> Free
+              </span>
+            ) : (
+              <span className="px-2 rounded-full border border-gray-400 flex items-center gap-1 h-6">
+                <MdOutlineAttachMoney className="text-green-400" /> Paid
+              </span>
+            )}
+
+            {event.mode === "online" ? (
+              <span className="px-2 rounded-full border border-gray-400 h-6 text-blue-500 flex items-center">
+                Online
+              </span>
+            ) : (
+              <span className="px-2 rounded-full border border-gray-400 h-6 flex items-center">
+                Offline
+              </span>
+            )}
+
+            <div className="ml-auto">
+              <MdOutlineArrowOutward className="text-xl text-gray-600 hover:text-black transition" />
+            </div>
+          </div>
+        </div>
       </div>
+    ))}
+  </div>
+</div>
+
         </div>
 
 

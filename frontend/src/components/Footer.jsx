@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-gray-100 py-6 px-4 border-t font-mono text-gray-800 mb-12">
+    <footer className="w-full bg-gray-100 py-6 px-4 border-t font-mono text-gray-800 mb-12 md:mb-0">
       <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4 max-w-5xl mx-auto text-center sm:text-left">
 
         {/* Brand */}

@@ -131,33 +131,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-white to-[#f4f4f4] px-4 sm:px-10 md:px-16 lg:px-20 py-6 font-sans transition-all duration-300">
 
-      {/* Search Modal */}
-      {/* {search && (
-        <div className="fixed inset-0 z-40 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center px-4">
-          <div className="bg-white rounded-xl shadow-lg p-6 max-h-[80vh] w-full sm:w-[90%] md:w-[70%] overflow-auto animate-fadeIn scale-100">
-            {filteritems.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {filteritems.map((event) => (
-                  <div
-                    key={event._id}
-                    onClick={() => navigate(`/event/${event._id}`)}
-                    className="cursor-pointer p-2 border rounded-md hover:bg-gray-100 transition"
-                  >
-                    <img
-                      src={event.eventImage?.url}
-                      alt=""
-                      className="w-full h-40 object-cover rounded-md"
-                    />
-                    <p className="mt-2 text-lg font-medium">{event.eventName}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center text-lg font-semibold text-gray-700">No event found.</div>
-            )}
-          </div>
-        </div>
-      )} */}
+
 
 {
   search && (
