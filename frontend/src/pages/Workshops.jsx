@@ -67,7 +67,7 @@ const Wrokshops = () => {
                 <EventCard className="h-20" key={event._id} event={event}  ClubId={event.club} />
               ))
             ) : (
-              <div className="text-center text-gray-600 font-medium">No workshops events available.</div>
+              <div className="text-center text-gray-600 font-medium">No workshops available.</div>
             )}
           </div>
         )}
