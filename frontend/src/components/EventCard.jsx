@@ -54,8 +54,8 @@ const [ImageUrl, setImageUrl] = useState('')
       {/* Labels */}
       <div className="flex text-xs sm:text-sm px-2 py-1 gap-2 items-center">
         <span className="border border-gray-600 rounded-full w-[42px] h-[42px] sm:w-[3vw] sm:h-[3vw] overflow-hidden flex items-center justify-center">
-          <img src={ImageUrl} alt="Organizer" className="object-cover w-full h-full" />
-          {/* <HiAcademicCap className="text-xl"/> */}
+          {ImageUrl ? ( <img src={ImageUrl} alt="Organizer" className="object-cover w-full h-full" />) : ( <HiAcademicCap className="text-xl"/>)}
+         
         </span>
 
         {event.paymentType === "Free" ? (
