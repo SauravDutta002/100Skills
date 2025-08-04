@@ -14,7 +14,7 @@ export const auth = async (req, res, next) => {
     req.club = { id: decoded.id }; // assuming your token has club id as payload
     next();
   } catch (error) {
-    console.error("Token Error:", error.message);
+   
     res.status(401).json({ error: "Invalid or expired token" });
   }
 };

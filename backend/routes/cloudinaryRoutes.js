@@ -23,7 +23,7 @@ router.get("/signature", (req, res) => {
 
     res.status(200).json({ timestamp, signature });
   } catch (error) {
-    console.error("Error generating signature:", error);
+    // console.error("Error generating signature:", error);
     res.status(500).json({ message: "Server error while generating signature" });
   }
 });

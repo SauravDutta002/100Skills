@@ -139,9 +139,7 @@ const handelChange = (e)=>{
 }
 
 
-useEffect(() => {
-    console.log("Mode changed to:", mode);
-  }, [mode]);
+
 
   //loader
 

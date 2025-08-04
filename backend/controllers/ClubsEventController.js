@@ -12,7 +12,6 @@ export const getClubsEvents =async (req,res)=>{
         res.json(clubsEvents);
 
     } catch (error) {
-        console.log(error);
         res.status(500).json({message: " error fetching clubs event"});
     }
 };
@@ -51,7 +50,7 @@ export const editEvent = async(req,res)=>{
 
 
         } catch (error) {
-            console.log(error);
+     
             res.status(500).json({message: "server error"})
         }
 }
@@ -99,7 +98,7 @@ export const getProfileData = async (req, res) => {
 
     res.status(200).json({ club: clubData });
   } catch (error) {
-    console.error("Error fetching club data:", error);
+
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -133,7 +132,7 @@ export const editProfileData = async (req, res) => {
       club: updatedClub,
     });
   } catch (error) {
-    console.error("Error updating profile:", error);
+
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -152,10 +151,9 @@ export const updateClubProfileImage = async (req, res) => {
     );
 
     if (!updatedClub) return res.status(404).json({ error: "Club not found" });
-
+    
     res.status(200).json({ message: "Profile image updated", updatedClub });
   } catch (err) {
-    console.error("❌ Error updating image:", err);
     res.status(500).json({ error: "Server error" });
   }
 };
@@ -174,7 +172,7 @@ export const getClubImageById = async (req, res) => {
     res.status(200).json({ clubProfileImg: club.clubProfileImg });
 
   } catch (error) {
-    console.error("Error fetching club image by ID:", error);
+
     res.status(500).json({ message: "Server error" });
   }
 };

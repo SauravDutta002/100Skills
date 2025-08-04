@@ -31,5 +31,5 @@ app.use("/api", headAdminAuth);
 
 
 app.listen(process.env.PORT , ()=>{
-    console.log(`server is runnig on PORT http://localhost:${process.env.PORT}`);
+    // console.log(`server is runnig on PORT http://localhost:${process.env.PORT}`);
 })

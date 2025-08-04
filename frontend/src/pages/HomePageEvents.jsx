@@ -216,14 +216,14 @@ const [ClubId, setClubId] = useState('')
         setLoading(true);
         const response = await api.get(`/events/allevents`);
         setEvents(response.data);
-        console.log(response.data[0].club)
+  
         
         response.data.forEach((item, index) => {
           setClubId(response.data.club)
-  console.log(`Club ${index + 1}:`, item.club);
+ 
 });
       } catch (error) {
-        console.error("Error fetching events:", error);
+       
         alert("Error fetching events");
       } finally {
         setLoading(false);

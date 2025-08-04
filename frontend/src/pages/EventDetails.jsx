@@ -21,11 +21,10 @@ const EventDetails = () => {
         const response = await api.get(`/events/get/${id}`);
         setEventData(response.data);
         setClubId(response.data.club);
-        console.log(response.data.club)
-        console.log(response.data)
+  
       } catch (error) {
-        console.log(error);
-        alert("Error fetching the event by id");
+    
+        alert("Error fetching the event");
       }
     };
     getDataById();

@@ -5,7 +5,6 @@ import dontenv from "dotenv"
 import mongoose from "mongoose";
 import Event from "../models/Event.js"
 
-
 dontenv.config();
 
 export const registerAdmin = async(req , res)=>{
@@ -18,7 +17,7 @@ export const registerAdmin = async(req , res)=>{
              await newUser.save();
              res.status(201).json({message:"user registered"});
         } catch (error) {
-            res.status(201).json({error:error.message});
+            res.status(500).json({error:error.message});
         }
 }
 

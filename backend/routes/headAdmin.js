@@ -1,4 +1,3 @@
-// routes/headAdmin.js
 import express from "express";
 import {registerHeadAdmin , loginHeadAdmin , getAllClubs , registerNewClub} from "../controllers/headAdminAuth.js"
 import {auth} from "../middlewares/authMiddleware.js" 

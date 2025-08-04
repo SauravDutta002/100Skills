@@ -18,7 +18,6 @@ const HeadAdminLogin = () => {
         const login = async(e)=>{
             e.preventDefault();
 
-            console.log("cliked")
             try {
               setloading(true);
                 const res = await api.post(`/auth/headadminLogin` , {
@@ -33,7 +32,7 @@ const HeadAdminLogin = () => {
                 navigate(`/headAdminDashboard`)
 
             } catch (error) {
-                console.log(error);
+                
                 alert("invalid credentials");
             }
             finally{

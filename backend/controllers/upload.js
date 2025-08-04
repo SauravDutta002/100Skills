@@ -46,7 +46,7 @@ const generateSignature = (req, res, next) => {
 
     res.status(200).json({ timestamp, signature, folder }); // ✅ return folder too
   } catch (error) {
-    console.error("Signature generation error:", error);
+    // console.error("Signature generation error:", error);
     res.status(500);
     next(error);
   }

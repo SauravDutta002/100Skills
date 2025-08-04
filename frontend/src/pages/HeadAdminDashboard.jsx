@@ -27,7 +27,7 @@ const HeadAdminDashboard = () => {
         });
         setClubs(res.data || []);
       } catch (err) {
-        console.error("Error fetching clubs:", err);
+       
       } finally {
         setLoading(false);
       }
@@ -55,7 +55,7 @@ const HeadAdminDashboard = () => {
       setFormData({ clubName: "", userId: "", password: "" });
       setClubs((prev) => [...prev, res.data]); // push full club object
     } catch (err) {
-      console.error("Error registering club:", err);
+      
       alert("Something went wrong!");
     } finally {
       setLoading(false);

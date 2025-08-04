@@ -28,7 +28,7 @@ const Hakathons = () => {
         setLoading(true);
         const response = await api.get(`/events/allevents`);
         setEvents(response.data);
-          console.log(response.data)
+         
 
       } catch (error) {
         alert("Error fetching events");

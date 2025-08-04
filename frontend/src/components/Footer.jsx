@@ -14,7 +14,7 @@ const Footer = () => {
         </div>
 
         {/* Creator Info */}
-        <div>
+        <div className='flex items-center flex-col'>
           <p className="text-sm font-medium"> Created by Saurav Dutta</p>
           <p className="text-xs text-gray-600">Made to help students find opportunities</p>
         </div>

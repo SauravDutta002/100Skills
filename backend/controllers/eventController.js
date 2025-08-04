@@ -52,7 +52,7 @@ export const createEvent = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("CREATE EVENT ERROR:", error);
+
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
@@ -72,7 +72,7 @@ export const getEventById = async(req,res)=>{
     res.status(200).json(event);
 
     } catch (error) {
-        console.error("Error fetching event by ID:", error);
+
         res.status(500).json({ message: "Server error" });
     }
 }
@@ -85,7 +85,7 @@ export const getAllEvent = async(req,res)=>{
         const allEvents = await Event.find();
         res.status(200).json(allEvents);
     } catch (error) {
-        console.log(error);
+
         res.status(500).json({ message: "Error fetching events", error: error.message });
     }
 }

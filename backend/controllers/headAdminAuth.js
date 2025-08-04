@@ -52,7 +52,7 @@ export const getAllClubs = async (req, res) => {
     const clubs = await ClubAdmin.find();
     res.status(200).json(clubs);
   } catch (error) {
-    console.error("Error fetching clubs:", error.message);
+
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -81,7 +81,7 @@ export const registerNewClub = async (req, res) => {
     await newClubAdmin.save();
     res.status(201).json({ message: "Club admin registered successfully" });
   } catch (error) {
-    console.error("Error registering club:", error.message);
+
     res.status(500).json({ error: "Internal server error" });
   }
 };
