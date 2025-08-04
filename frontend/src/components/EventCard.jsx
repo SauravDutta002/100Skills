@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import testImg from "../assets/testimg.jpeg";
 import { CiLocationOn } from "react-icons/ci";
@@ -9,12 +9,36 @@ import Countdown from "./Countdown";
 import { LuAlarmClock } from "react-icons/lu";
 import { FaRegCircleDot } from "react-icons/fa6";
 import { HiAcademicCap } from "react-icons/hi";
-const EventCard = ({ event }) => {
+import api from "../api/axios"
+const EventCard = ({ event , ClubId }) => {
   const navigate = useNavigate();
 
   const eventDetails = () => {
     navigate(`/event/${event._id}`);
   };
+
+  
+const [ImageUrl, setImageUrl] = useState('')
+
+    useEffect(() => {
+      const fetchClubImage = async () => {
+        try {
+          const response = await api.get(`/getClubImageById/${ClubId}`);
+          setImageUrl(response.data.clubProfileImg);
+          console.log(response.data.clubProfileImg);
+          
+          
+        } catch (err) {
+          setError('Failed to fetch club image');
+         
+        }
+      };
+  
+      if (ClubId) {
+        fetchClubImage();
+      }
+    }, [ClubId]);
+
 
   return (
     <div className="w-[85vw] sm:w-[60vw] md:w-[40vw] lg:w-[28vw] xl:w-[20vw] max-h-[70vh] bg-white rounded-2xl font-mono shadow-2xl overflow-hidden flex flex-col">
@@ -30,8 +54,8 @@ const EventCard = ({ event }) => {
       {/* Labels */}
       <div className="flex text-xs sm:text-sm px-2 py-1 gap-2 items-center">
         <span className="border border-gray-600 rounded-full w-[42px] h-[42px] sm:w-[3vw] sm:h-[3vw] overflow-hidden flex items-center justify-center">
-          {/* <img src="" alt="Organizer" className="object-cover w-full h-full" /> */}
-          <HiAcademicCap className="text-xl"/>
+          <img src={ImageUrl} alt="Organizer" className="object-cover w-full h-full" />
+          {/* <HiAcademicCap className="text-xl"/> */}
         </span>
 
         {event.paymentType === "Free" ? (

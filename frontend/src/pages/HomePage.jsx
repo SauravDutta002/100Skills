@@ -128,6 +128,9 @@ const HomePage = () => {
     (event?.eventName || "").toLowerCase().includes(search.toLowerCase())
   );
 
+
+  
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-white to-[#f4f4f4] px-4 sm:px-10 md:px-16 lg:px-20 py-6 font-sans transition-all duration-300">
 

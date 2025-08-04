@@ -62,7 +62,7 @@ const Ideathons = () => {
           <div className="flex flex-wrap gap-4 justify-center sm:justify-start animate-fadeInSlow">
             {filteredIdeathons.length > 0 ? (
               filteredIdeathons.map((event) => (
-                <EventCard className="h-20" key={event._id} event={event} />
+                <EventCard className="h-20" key={event._id} event={event}  ClubId={event.club}/>
               ))
             ) : (
               <div className="text-center text-gray-600 font-medium">No ideathon events available.</div>

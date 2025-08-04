@@ -9,12 +9,14 @@ import api from "../api/axios"
 
 
 const Hakathons = () => {
-  // const Base_Url = "https://one00skills.onrender.com/api";
   const navigate = useNavigate();
   const { search } = useOutletContext();
 
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
+  
 
      useEffect(() => {
       window.scrollTo(0, 0); // 👈 this forces scroll to top when component loads
@@ -26,6 +28,8 @@ const Hakathons = () => {
         setLoading(true);
         const response = await api.get(`/events/allevents`);
         setEvents(response.data);
+          console.log(response.data)
+
       } catch (error) {
         alert("Error fetching events");
       } finally {
@@ -64,7 +68,7 @@ const Hakathons = () => {
           <div className="flex flex-wrap gap-4 justify-center sm:justify-start animate-fadeInSlow">
             {filteredHackathons.length > 0 ? (
               filteredHackathons.map((event) => (
-                <EventCard className="h-20" key={event._id} event={event} />
+                <EventCard className="h-20" key={event._id} event={event} ClubId={event.club} />
               ))
             ) : (
               <div className="text-center text-gray-600 font-medium">No hackathon events available.</div>

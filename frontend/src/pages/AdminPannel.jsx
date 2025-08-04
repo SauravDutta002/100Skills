@@ -210,6 +210,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import axios from 'axios';
 import api from "../api/axios";
 import UploadToClubProfile from '../components/UploadToClubProfile';
+import { FaEdit } from "react-icons/fa";
 
 const AdminPannel = () => {
   const [clubData, setClubData] = useState([]);
@@ -218,6 +219,8 @@ const AdminPannel = () => {
   const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
+  const [ProfileEdit, setProfileEdit] = useState(false);
 
   // Fetch events
   useEffect(() => {
@@ -295,20 +298,48 @@ const AdminPannel = () => {
 
   return (
     <div className="w-full min-h-screen px-4 py-4 bg-gray-100">
-      <div className="h-50 bg-green">
-        <UploadToClubProfile onUploadComplete={fetchProfile} />
-      </div>
+     
 
       {/* Header */}
       <div className="bg-white rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
         <div className="flex items-center gap-4">
-          <div className="h-16 w-16 bg-gray-300 rounded-full overflow-hidden border">
+          {/* <div className="h-16 w-16 bg-gray-300 rounded-full overflow-hidden border">
             <img
               src={Profile.club?.clubProfileImg || ""}
               alt="club logo"
               className="w-full h-full object-cover"
             />
           </div>
+            <span><FaEdit className='text-xl flex absolute '/></span> */}
+
+            <div className="relative w-16 h-16">
+  <div className="w-16 h-16 bg-gray-300 rounded-full overflow-hidden border">
+    <img
+      src={Profile.club?.clubProfileImg || ""}
+      alt="club logo"
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+  <FaEdit onClick={()=>{setProfileEdit(true)}} className="absolute -bottom-2 left-4/5 transform -translate-x-1/2 bg-white p-1 rounded-full shadow text-xl text-black" />
+</div>
+
+          {ProfileEdit && (
+
+<div className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 px-4">
+  <div className="bg-white  rounded-2xl shadow-2xl p-6 max-w-sm w-full border border-gray-200 dark:border-zinc-700 transition-all duration-300">
+    <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
+      Update Profile Image
+    </h2>
+    <UploadToClubProfile onUploadComplete={fetchProfile} />
+  </div>
+</div>
+
+
+)}
+
+
+
           {editMode ? (
             <div className="flex gap-2 items-center">
               <input

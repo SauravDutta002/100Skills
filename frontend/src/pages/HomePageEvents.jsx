@@ -164,7 +164,7 @@ const HomePageEvents = () => {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [openSearch, setOpenSearch] = useState(false);
-
+const [ClubId, setClubId] = useState('')
    useEffect(() => {
     window.scrollTo(0, 0); // 👈 this forces scroll to top when component loads
   }, []);
@@ -216,6 +216,12 @@ const HomePageEvents = () => {
         setLoading(true);
         const response = await api.get(`/events/allevents`);
         setEvents(response.data);
+        console.log(response.data[0].club)
+        
+        response.data.forEach((item, index) => {
+          setClubId(response.data.club)
+  console.log(`Club ${index + 1}:`, item.club);
+});
       } catch (error) {
         console.error("Error fetching events:", error);
         alert("Error fetching events");
@@ -226,6 +232,26 @@ const HomePageEvents = () => {
 
     getAllEvents();
   }, []);
+
+
+  useEffect(() => {
+    const fetchClubImage = async () => {
+      try {
+        const response = await api.get(`/getClubImageById/${ClubId}`);
+        setImageUrl(response.data.clubProfileImg);
+        
+        
+      } catch (err) {
+        setError('Failed to fetch club image');
+       
+      }
+    };
+
+    if (ClubId) {
+      fetchClubImage();
+    }
+  }, [ClubId]);
+
 
   const sliderSettings = {
     dots: true,
