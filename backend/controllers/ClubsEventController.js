@@ -1,86 +1,94 @@
-import Event from "../models/Event.js"
+import Event from "../models/Event.js";
 import ClubAdmin from "../models/ClubAdmin.js";
 
-export const getClubsEvents =async (req,res)=>{
-    try {
-        const clubId = req.club.id;
+export const getClubsEvents = async (req, res) => {
+  try {
+    const clubId = req.club.id;
 
-        // const clubsEvents = await Event.find({club:clubId})
-        // const clubsEvents = await Event.find({ clubId }).populate('clubId');
-        const clubsEvents = await Event.find({ club: clubId });
-        
-        res.json(clubsEvents);
+    // const clubsEvents = await Event.find({club:clubId})
+    // const clubsEvents = await Event.find({ clubId }).populate('clubId');
+    const clubsEvents = await Event.find({ club: clubId });
 
-    } catch (error) {
-        res.status(500).json({message: " error fetching clubs event"});
-    }
+    res.json(clubsEvents);
+  } catch (error) {
+    res.status(500).json({ message: " error fetching clubs event" });
+  }
 };
 
+export const editEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-export const editEvent = async(req,res)=>{
-        try {
-            const {id} = req.params;
+    const {
+      eventImage,
+      eventName,
+      location,
+      registrationStartDate,
+      registrationEndDate,
+      eventDate,
+      registerLink,
+      mode,
+      paymentType,
+      eventType,
+      eventDescription,
+      AdditionalInfo,
+    } = req.body;
 
-            const{eventImage ,eventName , location , registrationStartDate , registrationEndDate , eventDate , registerLink , mode , paymentType ,  eventType} = req.body;
+    const updatedEvent = await Event.findByIdAndUpdate(
+      id,
+      {
+        eventImage,
+        eventName,
+        location,
+        registrationStartDate,
+        registrationEndDate,
+        eventDate,
+        registerLink,
+        mode,
+        paymentType,
+        eventType,
+        eventDescription,
+        AdditionalInfo,
+      },
+      { new: true }
+    );
 
-        const updatedEvent = await Event.findByIdAndUpdate(id , {
-            eventImage,
-            eventName,
-            location,
-            registrationStartDate,
-            registrationEndDate,
-            eventDate,
-            registerLink,
-            mode,
-            paymentType,
-            eventType,
-            
-        },
-    {new: true});
-
-      res.status(200).json({
+    res.status(200).json({
       message: "Event updated successfully",
-      event: updatedEvent
+      event: updatedEvent,
     });
 
-
-        if(!updatedEvent){
-            return res.status(404).json({message: "Event not found"})
-        }
-
-
-        } catch (error) {
-     
-            res.status(500).json({message: "server error"})
-        }
-}
-
-
-export const deleteEvent =async (req , res)=>{
-    try {
-        const {id}= req.params
-
-        const deleteById = await Event.findByIdAndDelete(id);
-
-        if(!deleteById){
-            return res.status(404).json({ message: "Event not found" });
-        }
-
-        res.status(200).json({ message: "Event deleted successfully", deleteById });
-
-    } catch (error) {
-        res.status(500).json({ message: "Internal Server Error" });
+    if (!updatedEvent) {
+      return res.status(404).json({ message: "Event not found" });
     }
-}
+  } catch (error) {
+    res.status(500).json({ message: "server error" });
+  }
+};
+
+export const deleteEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deleteById = await Event.findByIdAndDelete(id);
+
+    if (!deleteById) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+
+    res.status(200).json({ message: "Event deleted successfully", deleteById });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
 // export const updateClubName = async (req , res) =>{
 //     try {
-        
+
 //     } catch (error) {
-        
+
 //     }
 // }
-
 
 export const getProfileData = async (req, res) => {
   try {
@@ -98,11 +106,9 @@ export const getProfileData = async (req, res) => {
 
     res.status(200).json({ club: clubData });
   } catch (error) {
-
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 
 export const editProfileData = async (req, res) => {
   try {
@@ -132,11 +138,9 @@ export const editProfileData = async (req, res) => {
       club: updatedClub,
     });
   } catch (error) {
-
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 
 // Backend Controller
 export const updateClubProfileImage = async (req, res) => {
@@ -151,13 +155,12 @@ export const updateClubProfileImage = async (req, res) => {
     );
 
     if (!updatedClub) return res.status(404).json({ error: "Club not found" });
-    
+
     res.status(200).json({ message: "Profile image updated", updatedClub });
   } catch (err) {
     res.status(500).json({ error: "Server error" });
   }
 };
-
 
 export const getClubImageById = async (req, res) => {
   try {
@@ -170,9 +173,7 @@ export const getClubImageById = async (req, res) => {
     }
 
     res.status(200).json({ clubProfileImg: club.clubProfileImg });
-
   } catch (error) {
-
     res.status(500).json({ message: "Server error" });
   }
 };
